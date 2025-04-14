@@ -1,0 +1,65 @@
+@property --giorno-roundness {
+    syntax: "<length>";
+    inherits: false;
+    initial-value: 5px;
+}
+
+.giorno-mese-dispari {
+    background-color: var(--calendario-giorno-mese-dispari-colore);
+}
+
+.giorno {
+    font-size: 10px;
+    color: var(--calendario-testo-colore);
+    width: 14.28%;
+    height: 160px;
+
+    border-left-style: solid;
+    border-left-width: 1px;
+    border-left-color: var(--divisione-calendario-colore);
+
+    border-bottom-style: solid;
+    border-bottom-width: 1px;
+    border-bottom-color: var(--divisione-calendario-colore);
+
+    border-top-style: solid;
+    border-top-width: 1px;
+    border-top-color: var(--divisione-calendario-colore);
+}
+
+.giorno-attivita-ordinaria {
+    background-color: var(--calendario-giorno-attivita-ordinaria-colore);
+}
+
+.giorno:last-child {
+    border-right-style: solid;
+    border-right-width: 1px;
+    border-right-color: var(--divisione-calendario-colore);
+
+    border-top-right-radius: var(--giorno-roundness);
+    border-bottom-right-radius: var(--giorno-roundness);
+}
+
+.giorno:first-child {
+    border-top-left-radius: var(--giorno-roundness);
+    border-bottom-left-radius: var(--giorno-roundness);
+}
+
+.giorno-numero {
+    text-align: center;
+    margin-top: 5px;
+}
+
+.giorno-numero.corrente > span {
+    font-weight: bold;
+    background-color: var(--calendario-giorno-numero-corrente-colore);
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    display: inline-block;
+    align-content: center;
+}
+
+.giorno-mese {
+    text-align: center;
+}

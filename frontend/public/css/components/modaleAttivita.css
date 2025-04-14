@@ -1,0 +1,25 @@
+.modale-attivita {
+    display: flex;
+}
+
+.modale-attivita > div {
+    width: 50%;
+    text-align: center;
+}
+
+.modale-attivita-bottoni {
+    display: flex;
+    margin-top: 30px;
+}
+
+.modale-attivita-bottoni > div {
+    width: 50%;
+    text-align: center;
+}
+
+.modale-attivita-bottone-giorno-apertura {
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

@@ -1,0 +1,9 @@
+.modale-pulizie {
+    display: flex;
+    margin-bottom: 20px;
+}
+
+.modale-pulizie > div {
+    width: 100%;
+    text-align: center;
+}

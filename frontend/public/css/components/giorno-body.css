@@ -1,0 +1,20 @@
+.giorno-body {
+    margin: 10px 3px 3px 3px;
+}
+
+.giorno-body-icona {
+    text-align: center;
+}
+
+.giorno-body-chiusura {
+    font-size: 2.5vmin;
+    color: rgb(164, 40, 40);
+    transform: rotate(-45deg);
+    margin-top: 40px;
+}
+
+.giorno-body-chiusura-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

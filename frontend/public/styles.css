@@ -1,0 +1,23 @@
+@import "css/colors.css";
+@import "css/pages/calendario.css";
+@import "css/pages/account.css";
+@import "css/components/settimana.css";
+@import "css/components/giorno.css";
+@import "css/components/giorno-body.css";
+@import "css/components/pulizie.css";
+@import "css/components/responsabili.css";
+@import "css/components/modaleAttivita.css";
+@import "css/components/modalePulizie.css";
+@import "css/components/calendarioHeader.css";
+
+body {
+    font-family: 'Roboto', sans-serif;
+    max-width: 800px;
+    margin: 0 auto;
+    user-select: none;
+    background-color: var(--background-colore);
+}
+
+svg {
+    fill: var(--calendario-icone-colore);
+}

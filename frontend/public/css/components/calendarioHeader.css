@@ -1,0 +1,21 @@
+.calendario-header {
+    position: sticky;
+    top: 0;
+
+    background-color: var(--calendario-header-colore);
+    padding-top: 5px;
+    padding-left: 5px;
+    z-index: 1000;
+}
+
+.calendario-header-giorni {
+    display: flex;
+    justify-content: space-between;
+    color: var(--calendario-testo-colore);
+    font-size: 12px;
+}
+
+.calendario-header-giorno {
+    width: 14.28%;
+    text-align: center;
+}

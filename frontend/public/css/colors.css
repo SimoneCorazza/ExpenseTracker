@@ -1,0 +1,93 @@
+@media (prefers-color-scheme: dark) {
+    @property --divisione-calendario-colore {
+        syntax: "<color>";
+        inherits: false;
+        initial-value: #c2c2c2;
+    }
+    
+    @property --calendario-testo-colore {
+        syntax: "<color>";
+        inherits: false;
+        initial-value: #bfbfbf;
+    }
+    
+    @property --calendario-icone-colore {
+        syntax: "<color>";
+        inherits: false;
+        initial-value: #959595;
+    }
+    
+    @property --calendario-header-colore {
+        syntax: "<color>";
+        inherits: false;
+        initial-value: #0f0f0f;
+    }
+    
+    @property --calendario-giorno-mese-dispari-colore {
+        syntax: "<color>";
+        inherits: false;
+        initial-value: #f1f1f126;
+    }
+    
+    @property --calendario-giorno-attivita-ordinaria-colore {
+        syntax: "<color>";
+        inherits: false;
+        initial-value: rgb(24, 52, 65);
+    }
+    
+    @property --calendario-giorno-numero-corrente-colore {
+        syntax: "<color>";
+        inherits: false;
+        initial-value: #823535;
+    }
+
+    @property --background-colore {
+        syntax: "<color>";
+        inherits: false;
+        initial-value: #0f0f0f;
+    }
+}
+
+@media (prefers-color-scheme: light) {
+    @property --divisione-calendario-colore {
+        syntax: "<color>";
+        inherits: false;
+        initial-value: #c2c2c2;
+    }
+    
+    @property --calendario-testo-colore {
+        syntax: "<color>";
+        inherits: false;
+        initial-value: gray;
+    }
+    
+    @property --calendario-icone-colore {
+        syntax: "<color>";
+        inherits: false;
+        initial-value: #757575;
+    }
+    
+    @property --calendario-header-colore {
+        syntax: "<color>";
+        inherits: false;
+        initial-value: white;
+    }
+    
+    @property --calendario-giorno-mese-dispari-colore {
+        syntax: "<color>";
+        inherits: false;
+        initial-value: #f1f1f1;
+    }
+    
+    @property --calendario-giorno-attivita-ordinaria-colore {
+        syntax: "<color>";
+        inherits: false;
+        initial-value: rgb(228, 246, 255);
+    }
+    
+    @property --background-colore {
+        syntax: "<color>";
+        inherits: false;
+        initial-value: white;
+    }
+}

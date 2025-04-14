@@ -1,0 +1,12 @@
+.pulizie {
+    margin: 3px 3px 3px 3px;
+    height: 35px;
+    text-align: center;
+    font-size: 12px;
+    align-content: center;
+    color: var(--calendario-testo-colore);
+}
+
+.pulizie-icona {
+    margin-right: 10px;
+}

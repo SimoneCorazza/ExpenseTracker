@@ -1,0 +1,30 @@
+services:
+  frontend:
+    build:
+      context: ./frontend
+    ports:
+      - "3000:80"
+    depends_on:
+      - backend
+    environment:
+      - REACT_APP_SERVER_URL=http://localhost:8080
+  backend:
+    build:
+      context: ./backend
+    ports:
+      - "8080:8080"
+    depends_on:
+      - db
+    environment:
+      - Persistence__ConnectionString=Host=db;Database=ExpenseTracker;Username=postgres;Password=postgres
+  db:
+    image: postgres:latest
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: ExpenseTracker
+      PGDATA: /var/lib/postgresql/data
+    volumes:
+      - /postgresql_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"

@@ -1,0 +1,31 @@
+trigger:
+- master
+
+pool:
+  vmImage: ubuntu-latest
+
+jobs:
+- job: BACKEND
+  steps:
+  - task: Docker@2
+    displayName:  Build and push to container repository
+    inputs:
+      command: buildAndPush
+      containerRegistry: Registry ExpenseTracker
+      repository: simonecorazza/prenotazioninrs
+      buildContext: ./backend
+      Dockerfile: ./backend/Dockerfile
+      tags: |
+        backend-$(Build.BuildId)
+- job: FRONTEND
+  steps:
+  - task: Docker@2
+    displayName: Build and push to container repository
+    inputs:
+      command: buildAndPush
+      containerRegistry: Registry ExpenseTracker
+      repository: simonecorazza/prenotazioninrs
+      buildContext: ./frontend
+      Dockerfile: ./frontend/Dockerfile
+      tags: |
+        frontend-$(Build.BuildId)

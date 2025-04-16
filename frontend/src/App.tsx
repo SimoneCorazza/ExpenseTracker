@@ -1,20 +1,18 @@
 import { useCallback, useState } from 'react';
-import Account from './pages/Account';
-import Calendario from './pages/Calendario';
-import { getNomeUtente } from './services/LocalStorage';
 
 const App = () => {
-  const [nomeUtenteImpostato, setNomeUtenteImpostato] = useState<boolean>(!!getNomeUtente()); 
+  const [count, setCount] = useState(0);
 
-  const onNomeAccountImpostato = useCallback(() => {
-    setNomeUtenteImpostato(true);
+  const increment = useCallback(() => {
+    setCount((prevCount) => prevCount + 1);
   }, []);
 
-  if (nomeUtenteImpostato) {
-    return <Calendario />;
-  } else {
-    return <Account nomeImpostato={onNomeAccountImpostato} />
-  }  
+  return (
+    <div className="App">
+      <h1>Counter: {count}</h1>
+      <button onClick={increment}>Increment</button>
+    </div>
+  );
 };
 
 export default App;

@@ -1,4 +1,4 @@
-﻿namespace Domain.Users
+﻿namespace ExpenseTracker.Domain.Users
 {
     public class User
     {
@@ -10,7 +10,7 @@
         /// <summary>
         ///     Email address for the user
         /// </summary>
-        public string Email { get; private set; }
+        public EmailAddress Email { get; private set; }
 
         /// <summary>
         ///     Password hash
@@ -42,7 +42,7 @@
         /// </summary>
         public string EmailVerificationBlob { get; private set; }
 
-        public User(string email, string verificationBlob, byte[] passwordHash, byte[] passwordSalt)
+        public User(EmailAddress email, string verificationBlob, byte[] passwordHash, byte[] passwordSalt)
         {
             Id = Guid.NewGuid();
             Email = email;
@@ -67,7 +67,7 @@
             Validate();
         }
 
-        public void UpdateEmail(string email, string verificationBlob)
+        public void UpdateEmail(EmailAddress email, string verificationBlob)
         {
             Email = email;
             EmailVerifiedAt = null;
@@ -98,7 +98,7 @@
 
         private void Validate()
         {
-            if (string.IsNullOrWhiteSpace(Email))
+            if (Email is null)
             {
                 throw new DomainException("Email is mandatory");
             }

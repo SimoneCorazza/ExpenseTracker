@@ -1,4 +1,4 @@
-﻿namespace Domain
+﻿namespace ExpenseTracker.Domain
 {
     public class DomainException : Exception
     {

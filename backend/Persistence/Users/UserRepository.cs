@@ -1,24 +1,23 @@
-﻿using Domain.Users;
+﻿using ExpenseTracker.Domain.Users;
+using Microsoft.EntityFrameworkCore;
 
-namespace Persistence.Users
+namespace ExpenseTracker.Persistence.Users
 {
-    [Repository]
-    public class UserRepository : IUserRepository
+    public class UserRepository : BaseRepository<User, UsersDbContext>, IUserRepository
     {
-        private readonly UsersDbContext dbContext;
         public UserRepository(UsersDbContext dbContext)
+            : base(dbContext)
         {
-            this.dbContext = dbContext;
         }
-        public void Add(User user)
+
+        public Task<bool> ExistWithEmail(string email)
         {
-            dbContext.Users.Add(user);
-            dbContext.SaveChanges();
+            return DbContext.Users.AnyAsync(u => u.Email.Address == email);
         }
-        public void Update(User user)
+
+        public Task<User?> GetByEmail(string email)
         {
-            dbContext.Users.Update(user);
-            dbContext.SaveChanges();
+            return DbContext.Users.SingleOrDefaultAsync(u => u.Email.Address == email);
         }
     }
 }

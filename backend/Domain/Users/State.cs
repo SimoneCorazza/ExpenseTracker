@@ -1,4 +1,4 @@
-﻿namespace Domain.Users
+﻿namespace ExpenseTracker.Domain.Users
 {
     public enum State
     {

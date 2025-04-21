@@ -1,7 +1,7 @@
-﻿using Domain.Users;
+﻿using ExpenseTracker.Domain.Users;
 using Microsoft.EntityFrameworkCore;
 
-namespace Persistence.Users
+namespace ExpenseTracker.Persistence.Users
 {
     public class UsersDbContext : DbContext
     {
@@ -16,9 +16,19 @@ namespace Persistence.Users
         {
             modelBuilder.Entity<User>(e =>
             {
-                e.Property(u => u.Email)
-                    .IsRequired()
-                    .HasMaxLength(256);
+                e.OwnsOne(u => u.Email, op =>
+                {
+                    op.Property(u => u.Address)
+                        .HasColumnName("EmailAddress")
+                        .IsRequired()
+                        .HasMaxLength(256);
+
+                    op.HasIndex(u => u.Address)
+                    .IsUnique();
+                });
+
+                e.Property(u => u.Id);
+                e.HasKey(u => u.Id);
 
                 e.Property(u => u.PasswordHash)
                     .IsRequired();
@@ -36,9 +46,9 @@ namespace Persistence.Users
                     .IsRequired(false);
 
                 e.Property(u => u.EmailVerificationBlob)
-                    .IsRequired(false);
+                    .IsRequired();
 
-                e.HasIndex(u => u.Email)
+                e.HasIndex(u => u.EmailVerificationBlob)
                     .IsUnique();
             });
         }

@@ -1,10 +1,11 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿using ExpenseTracker.Domain;
+using ExpenseTracker.Persistence.Users;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
-using Persistence.Users;
 using System.Reflection;
 
-namespace Persistence
+namespace ExpenseTracker.Persistence
 {
     public static class Initializer
     {
@@ -12,13 +13,19 @@ namespace Persistence
         {
             services.AddDbContext<UsersDbContext>(options => options.UseNpgsql(connectionString));
 
-            var repositoryClasses = Assembly.GetExecutingAssembly().GetTypes()
-                .Where(type => type.GetCustomAttributes().Any(attr => attr.GetType().Equals(typeof(RepositoryAttribute))));
+            var repositoryClasses = Assembly
+                .GetExecutingAssembly()
+                .GetTypes()
+                .Where(x => !x.IsInterface && !x.IsAbstract && x.IsClass)
+                .Where(x => x.GetInterfaces().Any(y => y.IsGenericType && y.GetGenericTypeDefinition() == typeof(IRepository<>)))
+                .ToArray();
 
             foreach (var r in repositoryClasses)
             {
-                var @interface = r.GetInterfaces().First();
-                services.AddScoped(@interface, r);
+                foreach (var i in r.GetInterfaces())
+                {
+                    services.AddScoped(i, r);
+                }
             }
         }
 

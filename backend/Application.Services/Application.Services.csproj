@@ -8,4 +8,8 @@
     <RootNamespace>ExpenseTracker.Application.Services</RootNamespace>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="8.8.0" />
+  </ItemGroup>
+
 </Project>

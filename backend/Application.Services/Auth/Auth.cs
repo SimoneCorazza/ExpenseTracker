@@ -49,29 +49,5 @@ namespace ExpenseTracker.Application.Services.Auth
                 ExpireDate = expireDate,
             };
         }
-
-        public AuthenticatedUser ParseToken(string token)
-        {
-            var principal = tokenHandler.ValidateToken(token, new TokenValidationParameters
-            {
-                ValidateIssuerSigningKey = true,
-                IssuerSigningKey = signingKey,
-                ValidateIssuer = true,
-                ValidateAudience = false,
-                ClockSkew = TimeSpan.FromSeconds(10),
-                TokenDecryptionKey = encryptionKey,
-            }, out SecurityToken validatedToken);
-
-            var userId = Guid.Parse(principal.Claims.First(c => c.Type == ClaimTypes.NameIdentifier).Value);
-            var email = principal.Claims.First(c => c.Type == ClaimTypes.Email).Value;
-            var emailVerified = bool.Parse(principal.Claims.First(c => c.Type == EmailVerified).Value);
-
-            return new AuthenticatedUser
-            {
-                UserId = userId,
-                Email = email,
-                VerifiedEmail = emailVerified
-            };
-        }
     }
 }

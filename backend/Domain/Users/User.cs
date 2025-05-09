@@ -56,6 +56,9 @@
             Validate();
         }
 
+        /// <summary>
+        ///   Default constructor for EF
+        /// </summary>
         protected User()
         {
         }

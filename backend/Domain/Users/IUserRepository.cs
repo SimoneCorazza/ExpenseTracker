@@ -1,6 +1,4 @@
-﻿using ExpenseTracker.Domain;
-
-namespace ExpenseTracker.Domain.Users
+﻿namespace ExpenseTracker.Domain.Users
 {
     public interface IUserRepository : IRepository<User>
     {

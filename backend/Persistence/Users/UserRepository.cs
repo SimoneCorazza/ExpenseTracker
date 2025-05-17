@@ -3,9 +3,9 @@ using Microsoft.EntityFrameworkCore;
 
 namespace ExpenseTracker.Persistence.Users
 {
-    public class UserRepository : BaseRepository<User, UsersDbContext>, IUserRepository
+    public class UserRepository : BaseRepository<User>, IUserRepository
     {
-        public UserRepository(UsersDbContext dbContext)
+        public UserRepository(DbContext dbContext)
             : base(dbContext)
         {
         }

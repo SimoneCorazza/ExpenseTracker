@@ -1,5 +1,4 @@
 ﻿using ExpenseTracker.Domain;
-using ExpenseTracker.Persistence.Users;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
@@ -11,7 +10,7 @@ namespace ExpenseTracker.Persistence
     {
         public static void InitDatabase(this IServiceCollection services, string connectionString)
         {
-            services.AddDbContext<UsersDbContext>(options => options.UseNpgsql(connectionString));
+            services.AddDbContext<DbContext>(options => options.UseNpgsql(connectionString));
 
             var repositoryClasses = Assembly
                 .GetExecutingAssembly()
@@ -33,7 +32,7 @@ namespace ExpenseTracker.Persistence
         {
             using var scope = applicationBuilder.ApplicationServices.CreateScope();
 
-            var dbContext = scope.ServiceProvider.GetService<UsersDbContext>()
+            var dbContext = scope.ServiceProvider.GetService<DbContext>()
                 ?? throw new InvalidOperationException($"Cantextes where not injected with: {nameof(InitDatabase)}");
 
             dbContext.Database.EnsureCreated();

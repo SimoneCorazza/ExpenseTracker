@@ -1,15 +1,14 @@
 ﻿using ExpenseTracker.Domain;
-using Microsoft.EntityFrameworkCore;
 
 namespace ExpenseTracker.Persistence
 {
-    public abstract class BaseRepository<T, TDbContext> : IRepository<T> where TDbContext : DbContext
+    public abstract class BaseRepository<T> : IRepository<T>
     {
-        private readonly TDbContext dbContext;
+        private readonly DbContext dbContext;
 
-        protected TDbContext DbContext => dbContext;
+        protected DbContext DbContext => dbContext;
 
-        protected BaseRepository(TDbContext dbContext)
+        protected BaseRepository(DbContext dbContext)
         {
             this.dbContext = dbContext;
         }

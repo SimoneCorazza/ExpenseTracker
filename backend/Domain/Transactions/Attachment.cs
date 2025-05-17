@@ -1,4 +1,4 @@
-﻿namespace ExpenseTracker.Domain.Transaction
+﻿namespace ExpenseTracker.Domain.Transactions
 {
     public class Attachment
     {
@@ -18,6 +18,11 @@
         public string MimeType { get; private set; }
 
         /// <summary>
+        ///     Size of the attachment in bytes
+        /// </summary>
+        public long Size { get; private set; }
+
+        /// <summary>
         ///    Description of the attachment
         /// </summary>
         public string? Description { get; private set; }
@@ -27,23 +32,25 @@
         /// </summary>
         public string ObjectStorageId { get; private set; }
 
-        public Attachment(string name, string? description, string objectStorageId, string mimeType)
+        public Attachment(string name, string? description, string mimeType, long size, string objectStorageId)
         {
             Id = Guid.NewGuid();
             Name = name;
             Description = description;
-            ObjectStorageId = objectStorageId;
             MimeType = mimeType;
+            Size = size;
+            ObjectStorageId = objectStorageId;
 
             Validate();
         }
 
-        public void Update(string name, string? description, string mimeType, string objectStorageId)
+        public void Update(string name, string? description, string mimeType, long size, string objectStorageId)
         {
             Name = name;
             Description = description;
-            ObjectStorageId = objectStorageId;
             MimeType = mimeType;
+            Size = size;
+            ObjectStorageId = objectStorageId;
 
             Validate();
         }
@@ -63,6 +70,11 @@
             if (string.IsNullOrWhiteSpace(MimeType))
             {
                 throw new DomainException("The mime type is mandatory");
+            }
+
+            if (Size <= 0)
+            {
+                throw new DomainException("The size must be greater than 0");
             }
         }
     }

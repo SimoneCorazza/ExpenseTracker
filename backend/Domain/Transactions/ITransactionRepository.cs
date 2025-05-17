@@ -1,4 +1,4 @@
-﻿namespace ExpenseTracker.Domain.Transaction
+﻿namespace ExpenseTracker.Domain.Transactions
 {
     public interface ITransactionRepository : IRepository<Transaction>
     {

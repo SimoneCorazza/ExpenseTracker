@@ -41,12 +41,10 @@ namespace ExpenseTracker.Application.UserLogin
                 };
             }
 
-            var token = auth.GenerateToken(new AuthenticatedUser
-            {
-                Email = user.Email.Address,
-                UserId = user.Id,
-                VerifiedEmail = user.EmailVerifiedAt is not null,
-            });
+            var token = auth.GenerateToken(new AuthenticatedUser(
+                user.Id,
+                user.Email.Address,
+                user.EmailVerifiedAt is not null));
 
             // TODO: register last login date => make events? How to manage the transaction?
 

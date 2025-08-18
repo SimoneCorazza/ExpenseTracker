@@ -24,6 +24,14 @@ namespace ExpenseTracker.Application.Services.Auth
             this.tokenDuration = tokenDuration;
         }
 
+        public AuthenticatedUser FromClaims(ClaimsPrincipal claimsPrincipal)
+        {
+            return new AuthenticatedUser(
+                Guid.Parse(claimsPrincipal.FindFirst(ClaimTypes.NameIdentifier)?.Value),
+                claimsPrincipal.FindFirst(ClaimTypes.Email).Value,
+                bool.Parse(claimsPrincipal.FindFirst(EmailVerified)?.Value));
+        }
+
         public AuthToken GenerateToken(AuthenticatedUser authenticatedUser)
         {
             var expireDate = DateTime.UtcNow.Add(tokenDuration);

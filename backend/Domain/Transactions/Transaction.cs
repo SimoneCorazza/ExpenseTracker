@@ -64,6 +64,10 @@
             Validate();
         }
 
+        protected Transaction()
+        {
+        }
+
         public void Update(
             decimal amount,
             string? description,

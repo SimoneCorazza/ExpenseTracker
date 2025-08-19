@@ -11,6 +11,7 @@ namespace ExpenseTracker.Persistence.Transactions
     {
         public void Configure(EntityTypeBuilder<Transaction> builder)
         {
+            builder.ToTable("Transactions");
             builder.Property(x => x.Id)
                 .HasColumnName("TransactionId");
             builder.HasKey(x => x.Id);
@@ -42,6 +43,8 @@ namespace ExpenseTracker.Persistence.Transactions
             builder.OwnsMany(x => x.Attachments, op =>
             {
                 op.WithOwner().HasForeignKey("TransactionId");
+
+                op.ToTable("Attachments");
                 op.Property(x => x.Id)
                     .HasColumnName("AttachmentId");
                 op.HasKey(x => x.Id);

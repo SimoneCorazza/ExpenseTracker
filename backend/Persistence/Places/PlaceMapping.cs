@@ -9,6 +9,7 @@ namespace ExpenseTracker.Persistence.Places
     {
         public void Configure(EntityTypeBuilder<Place> builder)
         {
+            builder.ToTable("Places");
             builder.Property(x => x.Id)
                 .HasColumnName("PlaceId");
 

@@ -8,6 +8,7 @@ namespace ExpenseTracker.Persistence.Users
     {
         public void Configure(EntityTypeBuilder<User> builder)
         {
+            builder.ToTable("Users");
             builder.Property(u => u.Id)
                 .HasColumnName("UserId");
             builder.HasKey(u => u.Id);

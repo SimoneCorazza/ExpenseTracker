@@ -1,5 +1,8 @@
+using ExpenseTracker.Application.EditCategories;
+using ExpenseTracker.Application.GetCategories;
 using ExpenseTracker.Application.Services.EmailVerification;
 using ExpenseTracker.Application.Services.PasswordEncryptor;
+using ExpenseTracker.Application.Services.User;
 using ExpenseTracker.Application.UserLogin;
 using ExpenseTracker.Application.UserRegistration;
 using ExpenseTracker.Domain.Users.Services.PasswordValidator;
@@ -8,7 +11,6 @@ using ExpenseTracker.WebAPI.Configuration;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using System.Reflection;
-using System.Security.Claims;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -26,6 +28,9 @@ builder.Services.AddCors();
 builder.Services.AddAuthorization();
 builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(Assembly.Load("ExpenseTracker.Application")));
 builder.Services.AddOpenApi();
+builder.Services.AddHttpContextAccessor(); // Added to get the ClaimsPrincipal outside of the controller
+
+builder.Services.AddScoped<IUser, User>();
 
 var app = builder.Build();
 
@@ -44,7 +49,10 @@ app.UseHttpsRedirection();
 app.MapPost("api/v1/user/register", async ([FromBody] RegisterRequest r, IMediator mediator) => await mediator.Send(r));
 app.MapPost("api/v1/user/login", async ([FromBody] UserLoginRequest r, IMediator mediator) => await mediator.Send(r));
 
-app.MapGet("api/v1/user/test", async (ClaimsPrincipal a) => "aaaa")
+app.MapGet("api/v1/categories", async (IMediator mediator) => await mediator.Send(new GetCategories()))
    .RequireAuthorization();
+app.MapPut("api/v1/categories", async ([FromBody] EditCategoriesRequest r, IMediator mediator) => await mediator.Send(r))
+   .RequireAuthorization();
+
 
 app.Run();

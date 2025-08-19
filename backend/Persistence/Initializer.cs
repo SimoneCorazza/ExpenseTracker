@@ -1,4 +1,6 @@
 ﻿using ExpenseTracker.Domain;
+using ExpenseTracker.Domain.Categories;
+using ExpenseTracker.Persistence.Categories;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
@@ -18,6 +20,9 @@ namespace ExpenseTracker.Persistence
                 .Where(x => !x.IsInterface && !x.IsAbstract && x.IsClass)
                 .Where(x => x.GetInterfaces().Any(y => y.IsGenericType && y.GetGenericTypeDefinition() == typeof(IRepository<>)))
                 .ToArray();
+
+            // Register extra repository
+            services.AddScoped<ICategoryRepository, CategoryRepository>();
 
             foreach (var r in repositoryClasses)
             {

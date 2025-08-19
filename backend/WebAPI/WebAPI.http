@@ -1,5 +1,3 @@
-@host = http://localhost:5162
-
 POST {{host}}/api/v1/user/register
 Accept: application/json
 Content-Type: application/json
@@ -22,6 +20,37 @@ Content-Type: application/json
 
 ###
 
-GET {{host}}/api/v1/user/test
+PUT {{host}}/api/v1/categories
+Accept: application/json
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+    "RootCategories": [
+        {
+            "Name": "Home",
+            "Childrens": [
+                {
+                    "Name": "Groceries"
+                },
+                {
+                    "Name": "Bill",
+                    "Childrens": [
+                        {
+                            "Name": "Electricity"
+                        },
+                        {
+                            "Name": "Gas"
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}
+
+###
+
+GET {{host}}/api/v1/categories
 Accept: application/json
 Authorization: Bearer {{token}}

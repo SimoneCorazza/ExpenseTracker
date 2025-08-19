@@ -1,16 +1,17 @@
-﻿using ExpenseTracker.Domain.Categories;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace ExpenseTracker.Persistence.Categories
 {
-    internal class CategoryMapping : IEntityTypeConfiguration<Category>
+    internal class CategoryMapping : IEntityTypeConfiguration<CategoryPersistance>
     {
-        public void Configure(EntityTypeBuilder<Category> builder)
+        public void Configure(EntityTypeBuilder<CategoryPersistance> builder)
         {
+            builder.ToTable("Categories");
             builder.Property(x => x.Id)
                 .HasColumnName("CategoryId");
             builder.HasKey(x => x.Id);
+
 
             builder.Property(x => x.Name)
                 .IsRequired()
@@ -19,10 +20,11 @@ namespace ExpenseTracker.Persistence.Categories
             builder.Property(x => x.Description)
                 .HasMaxLength(500);
 
-            builder.HasOne<Category>()
-                .WithMany()
-                .HasForeignKey(x => x.ParentId)
-                .OnDelete(DeleteBehavior.Restrict);
+            builder.Property(x => x.UserId)
+                .IsRequired();
+
+            builder.Property(x => x.ParentId)
+                .IsRequired(false);
         }
     }
 }

@@ -8,9 +8,9 @@
         public Guid Id { get; private set; }
 
         /// <summary>
-        ///     Parent category id
+        ///     Childrens of this category
         /// </summary>
-        public Guid? ParentId { get; private set; }
+        public ICollection<Category> Childrens { get; private set; }
 
         /// <summary>
         ///    Name of the category
@@ -22,24 +22,29 @@
         /// </summary>
         public string? Description { get; private set; }
 
-        public Category(Guid? parentId, string name, string? description)
+        public Category(Guid id, ICollection<Category> childrens, string name, string? description)
         {
-            Id = Guid.NewGuid();
+            Id = id;
 
-            ParentId = parentId;
+            Childrens = childrens;
             Name = name;
             Description = description;
 
             Validate();
         }
 
+        public Category(ICollection<Category> childrens, string name, string? description)
+            : this(Guid.NewGuid(), childrens, name, description)
+        {
+        }
+
         protected Category()
         {
         }
 
-        public void Update(Guid? parentId, string name, string? description)
+        public void Update(ICollection<Category> childrens, string name, string? description)
         {
-            ParentId = parentId;
+            Childrens = childrens;
             Name = name;
             Description = description;
 
@@ -48,11 +53,6 @@
 
         private void Validate()
         {
-            if (Id == ParentId)
-            {
-                throw new DomainException("The category cannot be parent of itself");
-            }
-
             if (string.IsNullOrWhiteSpace(Name))
             {
                 throw new DomainException("The name is mandatory");

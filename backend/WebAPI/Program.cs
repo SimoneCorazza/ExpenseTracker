@@ -3,10 +3,9 @@ using ExpenseTracker.Application.GetCategories;
 using ExpenseTracker.Application.Services.EmailVerification;
 using ExpenseTracker.Application.Services.PasswordEncryptor;
 using ExpenseTracker.Application.Services.User;
-using ExpenseTracker.Application.UserLogin;
-using ExpenseTracker.Application.UserRegistration;
 using ExpenseTracker.Domain.Users.Services.PasswordValidator;
 using ExpenseTracker.Persistence;
+using ExpenseTracker.WebAPI.API;
 using ExpenseTracker.WebAPI.Configuration;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
@@ -46,13 +45,8 @@ app.UseAuthorization();
 app.UseEntityFramework();
 app.UseHttpsRedirection();
 
-app.MapPost("api/v1/user/register", async ([FromBody] RegisterRequest r, IMediator mediator) => await mediator.Send(r));
-app.MapPost("api/v1/user/login", async ([FromBody] UserLoginRequest r, IMediator mediator) => await mediator.Send(r));
-
-app.MapGet("api/v1/categories", async (IMediator mediator) => await mediator.Send(new GetCategories()))
-   .RequireAuthorization();
-app.MapPut("api/v1/categories", async ([FromBody] EditCategoriesRequest r, IMediator mediator) => await mediator.Send(r))
-   .RequireAuthorization();
+app.MapUsers();
+app.MapCategories();
 
 
 app.Run();

@@ -1,8 +1,8 @@
 ﻿using MediatR;
 
-namespace ExpenseTracker.Application.UserRegistration
-{
-    public class RegisterRequest : IRequest<UserRegistrationResponse>
+namespace ExpenseTracker.Application.UserRegistration;
+
+public class RegisterRequest : IRequest<UserRegistrationResponse>
     {
         /// <summary>
         ///     Email address
@@ -14,4 +14,3 @@ namespace ExpenseTracker.Application.UserRegistration
         /// </summary>
         public string Password { get; set; }
     }
-}

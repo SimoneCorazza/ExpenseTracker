@@ -3,9 +3,9 @@ using ExpenseTracker.Application.Services.PasswordEncryptor;
 using ExpenseTracker.Domain.Users;
 using MediatR;
 
-namespace ExpenseTracker.Application.UserLogin
-{
-    public class UserLoginHandler : IRequestHandler<UserLoginRequest, UserLoginResponse>
+namespace ExpenseTracker.Application.UserLogin;
+
+public class UserLoginHandler : IRequestHandler<UserLoginRequest, UserLoginResponse>
     {
         private readonly IUserRepository userRepository;
         private readonly IPasswordEncryptor passwordEncryptor;
@@ -56,4 +56,3 @@ namespace ExpenseTracker.Application.UserLogin
             };
         }
     }
-}

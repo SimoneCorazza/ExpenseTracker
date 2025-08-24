@@ -1,6 +1,6 @@
-﻿namespace ExpenseTracker.Domain.Categories
-{
-    public class Category
+﻿namespace ExpenseTracker.Domain.Categories;
+
+public class Category
     {
         /// <summary>
         ///    Category id
@@ -59,4 +59,3 @@
             }
         }
     }
-}

@@ -2,9 +2,9 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace ExpenseTracker.Persistence.Users
-{
-    internal class UserMapping : IEntityTypeConfiguration<User>
+namespace ExpenseTracker.Persistence.Users;
+
+internal class UserMapping : IEntityTypeConfiguration<User>
     {
         public void Configure(EntityTypeBuilder<User> builder)
         {
@@ -46,4 +46,3 @@ namespace ExpenseTracker.Persistence.Users
                 .IsUnique();
         }
     }
-}

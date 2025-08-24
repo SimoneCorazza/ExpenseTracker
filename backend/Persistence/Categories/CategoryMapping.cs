@@ -1,9 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace ExpenseTracker.Persistence.Categories
-{
-    internal class CategoryMapping : IEntityTypeConfiguration<CategoryPersistance>
+namespace ExpenseTracker.Persistence.Categories;
+
+internal class CategoryMapping : IEntityTypeConfiguration<CategoryPersistance>
     {
         public void Configure(EntityTypeBuilder<CategoryPersistance> builder)
         {
@@ -27,4 +27,3 @@ namespace ExpenseTracker.Persistence.Categories
                 .IsRequired(false);
         }
     }
-}

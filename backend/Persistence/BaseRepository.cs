@@ -1,8 +1,8 @@
 ﻿using ExpenseTracker.Domain;
 
-namespace ExpenseTracker.Persistence
-{
-    public abstract class BaseRepository<T> : IRepository<T>
+namespace ExpenseTracker.Persistence;
+
+public abstract class BaseRepository<T> : IRepository<T>
     {
         private readonly DbContext dbContext;
 
@@ -30,4 +30,3 @@ namespace ExpenseTracker.Persistence
             dbContext.SaveChanges();
         }
     }
-}

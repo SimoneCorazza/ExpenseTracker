@@ -1,6 +1,6 @@
-﻿namespace ExpenseTracker.Domain.Categories
-{
-    /// <summary>
+﻿namespace ExpenseTracker.Domain.Categories;
+
+/// <summary>
     ///   Categories associeted to a given user
     /// </summary>
     public class UserCategories
@@ -74,4 +74,3 @@
             return categories.Count + categories.Sum(c => CountCategories(c.Childrens));
         }
     }
-}

@@ -1,6 +1,6 @@
-﻿namespace ExpenseTracker.Domain.Transactions
-{
-    public class Attachment
+﻿namespace ExpenseTracker.Domain.Transactions;
+
+public class Attachment
     {
         /// <summary>
         ///     Attachment id
@@ -78,4 +78,3 @@
             }
         }
     }
-}

@@ -1,6 +1,6 @@
-﻿namespace ExpenseTracker.Domain.Users.Services.PasswordValidator
-{
-    public class PasswordValidationResult
+﻿namespace ExpenseTracker.Domain.Users.Services.PasswordValidator;
+
+public class PasswordValidationResult
     {
         public PasswordValidationResult()
         {
@@ -15,4 +15,3 @@
 
         public bool IsSuccess => string.IsNullOrEmpty(ErrorMessage);
     }
-}

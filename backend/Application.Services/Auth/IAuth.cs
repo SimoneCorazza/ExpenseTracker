@@ -1,8 +1,8 @@
 ﻿using System.Security.Claims;
 
-namespace ExpenseTracker.Application.Services.Auth
-{
-    /// <summary>
+namespace ExpenseTracker.Application.Services.Auth;
+
+/// <summary>
     ///     Interface for the authentication service
     /// </summary>
     public interface IAuth
@@ -21,4 +21,3 @@ namespace ExpenseTracker.Application.Services.Auth
         /// <returns>Authenticated user</returns>
         AuthenticatedUser FromClaims(ClaimsPrincipal claimsPrincipal);
     }
-}

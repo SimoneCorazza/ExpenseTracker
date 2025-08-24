@@ -1,6 +1,6 @@
-﻿namespace ExpenseTracker.Domain.Users
-{
-    public class User
+﻿namespace ExpenseTracker.Domain.Users;
+
+public class User
     {
         /// <summary>
         ///     User ID
@@ -127,4 +127,3 @@
             }
         }
     }
-}

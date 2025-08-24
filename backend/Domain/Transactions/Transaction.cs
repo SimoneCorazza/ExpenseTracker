@@ -1,6 +1,6 @@
-﻿namespace ExpenseTracker.Domain.Transactions
-{
-    public class Transaction
+﻿namespace ExpenseTracker.Domain.Transactions;
+
+public class Transaction
     {
         /// <summary>
         ///     Transaction id
@@ -107,4 +107,3 @@
             }
         }
     }
-}

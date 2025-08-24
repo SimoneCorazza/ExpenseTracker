@@ -5,9 +5,9 @@ using ExpenseTracker.Domain.Users;
 using ExpenseTracker.Domain.Users.Services.PasswordValidator;
 using MediatR;
 
-namespace ExpenseTracker.Application.UserRegistration
-{
-    public class UserRegistrationHandler : IRequestHandler<RegisterRequest, UserRegistrationResponse>
+namespace ExpenseTracker.Application.UserRegistration;
+
+public class UserRegistrationHandler : IRequestHandler<RegisterRequest, UserRegistrationResponse>
     {
         private readonly IUserRepository userRepository;
         private readonly IPasswordValidator passwordValidator;
@@ -75,4 +75,3 @@ namespace ExpenseTracker.Application.UserRegistration
             }
         }
     }
-}

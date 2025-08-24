@@ -1,6 +1,6 @@
-﻿namespace ExpenseTracker.Domain
-{
-    public class DomainException : Exception
+﻿namespace ExpenseTracker.Domain;
+
+public class DomainException : Exception
     {
         public DomainException()
         {
@@ -16,4 +16,3 @@
         {
         }
     }
-}

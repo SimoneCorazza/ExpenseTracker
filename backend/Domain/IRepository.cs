@@ -1,6 +1,6 @@
-﻿namespace ExpenseTracker.Domain
-{
-    /// <summary>
+﻿namespace ExpenseTracker.Domain;
+
+/// <summary>
     ///     Generic repository interface
     /// </summary>
     /// <typeparam name="T"></typeparam>
@@ -24,4 +24,3 @@
         /// <returns>Transaction object</returns>
         ITransaction BeginTransaction();
     }
-}

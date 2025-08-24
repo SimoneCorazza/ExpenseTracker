@@ -1,6 +1,6 @@
-﻿namespace ExpenseTracker.Application.UserRegistration
-{
-    public class UserRegistrationResponse
+﻿namespace ExpenseTracker.Application.UserRegistration;
+
+public class UserRegistrationResponse
     {
         /// <summary>
         ///     The unique identifier for the user.
@@ -12,4 +12,3 @@
         /// </summary>
         public ErrorCode? ErrorCode { get; set; }
     }
-}

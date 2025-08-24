@@ -1,8 +1,8 @@
 ﻿using System.Net.Mail;
 
-namespace ExpenseTracker.Domain.Users
-{
-    /// <summary>
+namespace ExpenseTracker.Domain.Users;
+
+/// <summary>
     ///   Represents an email address
     /// </summary>
     public class EmailAddress
@@ -29,4 +29,3 @@ namespace ExpenseTracker.Domain.Users
             Address = address;
         }
     }
-}

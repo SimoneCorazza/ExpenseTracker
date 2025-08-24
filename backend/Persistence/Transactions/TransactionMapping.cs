@@ -5,9 +5,9 @@ using ExpenseTracker.Domain.Users;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace ExpenseTracker.Persistence.Transactions
-{
-    internal class TransactionMapping : IEntityTypeConfiguration<Transaction>
+namespace ExpenseTracker.Persistence.Transactions;
+
+internal class TransactionMapping : IEntityTypeConfiguration<Transaction>
     {
         public void Configure(EntityTypeBuilder<Transaction> builder)
         {
@@ -59,4 +59,3 @@ namespace ExpenseTracker.Persistence.Transactions
             });
         }
     }
-}

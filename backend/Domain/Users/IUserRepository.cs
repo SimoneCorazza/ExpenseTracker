@@ -1,6 +1,6 @@
-﻿namespace ExpenseTracker.Domain.Users
-{
-    public interface IUserRepository : IRepository<User>
+﻿namespace ExpenseTracker.Domain.Users;
+
+public interface IUserRepository : IRepository<User>
     {
         /// <summary>
         ///     Check if a user exists with the given email
@@ -16,4 +16,3 @@
         /// <returns>User or null if not found</returns>
         Task<User?> GetByEmail(string email);
     }
-}

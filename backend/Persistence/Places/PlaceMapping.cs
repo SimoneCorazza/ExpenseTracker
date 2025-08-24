@@ -3,9 +3,9 @@ using ExpenseTracker.Domain.Users;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace ExpenseTracker.Persistence.Places
-{
-    internal class PlaceMapping : IEntityTypeConfiguration<Place>
+namespace ExpenseTracker.Persistence.Places;
+
+internal class PlaceMapping : IEntityTypeConfiguration<Place>
     {
         public void Configure(EntityTypeBuilder<Place> builder)
         {
@@ -28,4 +28,3 @@ namespace ExpenseTracker.Persistence.Places
                 .OnDelete(DeleteBehavior.Cascade);
         }
     }
-}

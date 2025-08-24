@@ -1,8 +1,7 @@
 ﻿using MediatR;
 
-namespace ExpenseTracker.Application.GetCategories
+namespace ExpenseTracker.Application.GetCategories;
+
+public class GetCategories : IRequest<GetCategoriesResponse>
 {
-    public class GetCategories : IRequest<GetCategoriesResponse>
-    {
-    }
 }

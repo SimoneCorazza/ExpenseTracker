@@ -1,6 +1,6 @@
-﻿namespace ExpenseTracker.Domain.Places
-{
-    /// <summary>
+﻿namespace ExpenseTracker.Domain.Places;
+
+/// <summary>
     ///     Place where the transaction took place
     /// </summary>
     public class Place
@@ -58,4 +58,3 @@
             }
         }
     }
-}

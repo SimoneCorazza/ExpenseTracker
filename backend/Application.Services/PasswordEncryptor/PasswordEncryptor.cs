@@ -1,9 +1,9 @@
 ﻿using System.Security.Cryptography;
 using System.Text;
 
-namespace ExpenseTracker.Application.Services.PasswordEncryptor
-{
-    public class PasswordEncryptor : IPasswordEncryptor
+namespace ExpenseTracker.Application.Services.PasswordEncryptor;
+
+public class PasswordEncryptor : IPasswordEncryptor
     {
         private readonly int saltSize;
 
@@ -34,4 +34,3 @@ namespace ExpenseTracker.Application.Services.PasswordEncryptor
             return computedHash.SequenceEqual(hash);
         }
     }
-}

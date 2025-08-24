@@ -1,6 +1,6 @@
-﻿namespace ExpenseTracker.Domain.Users.Services.PasswordValidator
-{
-    /// <inheritdoc cref="IPasswordValidator" />
+﻿namespace ExpenseTracker.Domain.Users.Services.PasswordValidator;
+
+/// <inheritdoc cref="IPasswordValidator" />
     public class PasswordValidator : IPasswordValidator
     {
         private readonly int minPasswordLength;
@@ -58,4 +58,3 @@
             return new PasswordValidationResult();
         }
     }
-}

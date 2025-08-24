@@ -1,7 +1,6 @@
-﻿namespace ExpenseTracker.Application.Services.Auth
-{
-    
-    public class AuthenticatedUser
+﻿namespace ExpenseTracker.Application.Services.Auth;
+
+public class AuthenticatedUser
     {
         public AuthenticatedUser(Guid userId, string email, bool verifiedEmail)
         {
@@ -25,4 +24,3 @@
         /// </summary>
         public bool VerifiedEmail { get; }
     }
-}

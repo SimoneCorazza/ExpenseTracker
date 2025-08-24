@@ -1,9 +1,9 @@
 ﻿using ExpenseTracker.Domain;
 using Microsoft.EntityFrameworkCore.Storage;
 
-namespace ExpenseTracker.Persistence
-{
-    public class EFCoreTransaction : ITransaction
+namespace ExpenseTracker.Persistence;
+
+public class EFCoreTransaction : ITransaction
     {
         private readonly IDbContextTransaction dbContextTransaction;
 
@@ -28,4 +28,3 @@ namespace ExpenseTracker.Persistence
             await dbContextTransaction.RollbackAsync();
         }
     }
-}

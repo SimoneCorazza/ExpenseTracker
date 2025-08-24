@@ -1,6 +1,6 @@
-﻿namespace ExpenseTracker.Application.UserRegistration
-{
-    /// <summary>
+﻿namespace ExpenseTracker.Application.UserRegistration;
+
+/// <summary>
     ///     Error during the user registration
     /// </summary>
     public enum ErrorCode
@@ -20,4 +20,3 @@
         /// </summary>
         InvalidPassword = 3,
     }
-}

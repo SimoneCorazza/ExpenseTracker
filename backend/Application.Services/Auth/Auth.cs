@@ -2,9 +2,9 @@
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 
-namespace ExpenseTracker.Application.Services.Auth
-{
-    public class Auth : IAuth
+namespace ExpenseTracker.Application.Services.Auth;
+
+public class Auth : IAuth
     {
         private const string EmailVerified = "EmailVerified";
 
@@ -58,4 +58,3 @@ namespace ExpenseTracker.Application.Services.Auth
             };
         }
     }
-}

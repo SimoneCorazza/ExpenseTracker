@@ -1,6 +1,6 @@
-﻿namespace ExpenseTracker.Persistence.Categories
-{
-    /// <summary>
+﻿namespace ExpenseTracker.Persistence.Categories;
+
+/// <summary>
     ///     Persistance model for Category
     /// </summary>
     public class CategoryPersistance
@@ -30,4 +30,3 @@
         /// </summary>
         public Guid? ParentId { get; set; }
     }
-}

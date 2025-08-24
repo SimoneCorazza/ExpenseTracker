@@ -1,6 +1,6 @@
-﻿namespace ExpenseTracker.Domain.Users
-{
-    public enum State
+﻿namespace ExpenseTracker.Domain.Users;
+
+public enum State
     {
         /// <summary>
         ///   User is active
@@ -17,4 +17,3 @@
         /// </summary>
         ToBeDeleted = 3,
     }
-}

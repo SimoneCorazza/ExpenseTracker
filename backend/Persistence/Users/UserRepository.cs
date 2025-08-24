@@ -1,9 +1,9 @@
 ﻿using ExpenseTracker.Domain.Users;
 using Microsoft.EntityFrameworkCore;
 
-namespace ExpenseTracker.Persistence.Users
-{
-    public class UserRepository : BaseRepository<User>, IUserRepository
+namespace ExpenseTracker.Persistence.Users;
+
+public class UserRepository : BaseRepository<User>, IUserRepository
     {
         public UserRepository(DbContext dbContext)
             : base(dbContext)
@@ -20,4 +20,3 @@ namespace ExpenseTracker.Persistence.Users
             return DbContext.Users.SingleOrDefaultAsync(u => u.Email.Address == email);
         }
     }
-}

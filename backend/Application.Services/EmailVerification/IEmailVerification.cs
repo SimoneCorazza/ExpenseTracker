@@ -1,6 +1,6 @@
-﻿namespace ExpenseTracker.Application.Services.EmailVerification
-{
-    /// <summary>
+﻿namespace ExpenseTracker.Application.Services.EmailVerification;
+
+/// <summary>
     ///   Interface for email verification service
     /// </summary>
     public interface IEmailVerification
@@ -11,4 +11,3 @@
         /// <returns>Unique URL</returns>
         string GenerateUniqueUrl();
     }
-}

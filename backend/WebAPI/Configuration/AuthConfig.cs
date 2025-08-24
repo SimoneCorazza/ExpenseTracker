@@ -2,9 +2,9 @@
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 
-namespace ExpenseTracker.WebAPI.Configuration
-{
-    public static class AuthConfig
+namespace ExpenseTracker.WebAPI.Configuration;
+
+public static class AuthConfig
     {
         private class JwtConfiguration
         {
@@ -46,4 +46,3 @@ namespace ExpenseTracker.WebAPI.Configuration
                 });
         }
     }
-}

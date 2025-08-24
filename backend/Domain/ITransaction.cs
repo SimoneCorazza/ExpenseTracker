@@ -1,6 +1,6 @@
-﻿namespace ExpenseTracker.Domain
-{
-    /// <summary>
+﻿namespace ExpenseTracker.Domain;
+
+/// <summary>
     ///     Transaction interface
     /// </summary>
     public interface ITransaction : IAsyncDisposable
@@ -15,4 +15,3 @@
         /// </summary>
         Task RollbackAsync();
     }
-}

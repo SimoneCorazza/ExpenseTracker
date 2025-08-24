@@ -1,6 +1,6 @@
-﻿namespace ExpenseTracker.Domain.Users.Services.PasswordValidator
-{
-    /// <summary>
+﻿namespace ExpenseTracker.Domain.Users.Services.PasswordValidator;
+
+/// <summary>
     ///     Service to validate passwords
     /// </summary>
     public interface IPasswordValidator
@@ -12,4 +12,3 @@
         /// <returns>Validation result</returns>
         PasswordValidationResult Validate(string password);
     }
-}

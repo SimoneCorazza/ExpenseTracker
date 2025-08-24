@@ -6,9 +6,9 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using System.Reflection;
 
-namespace ExpenseTracker.Persistence
-{
-    public static class Initializer
+namespace ExpenseTracker.Persistence;
+
+public static class Initializer
     {
         public static void InitDatabase(this IServiceCollection services, string connectionString)
         {
@@ -43,4 +43,3 @@ namespace ExpenseTracker.Persistence
             dbContext.Database.EnsureCreated();
         }
     }
-}

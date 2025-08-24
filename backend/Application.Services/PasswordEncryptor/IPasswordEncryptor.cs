@@ -1,6 +1,6 @@
-﻿namespace ExpenseTracker.Application.Services.PasswordEncryptor
-{
-    public interface IPasswordEncryptor
+﻿namespace ExpenseTracker.Application.Services.PasswordEncryptor;
+
+public interface IPasswordEncryptor
     {
         byte[] GenerateSalt();
 
@@ -8,4 +8,3 @@
 
         bool VerifyPassword(string password, byte[] salt, byte[] hash);
     }
-}

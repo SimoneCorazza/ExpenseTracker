@@ -1,8 +1,8 @@
 ﻿using System.Security.Cryptography;
 
-namespace ExpenseTracker.Application.Services.EmailVerification
-{
-    public class EmailVerification : IEmailVerification
+namespace ExpenseTracker.Application.Services.EmailVerification;
+
+public class EmailVerification : IEmailVerification
     {
         private readonly int size;
 
@@ -23,4 +23,3 @@ namespace ExpenseTracker.Application.Services.EmailVerification
                 .TrimEnd('='); // Remove padding
         }
     }
-}

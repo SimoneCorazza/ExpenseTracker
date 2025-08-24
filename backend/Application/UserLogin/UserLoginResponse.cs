@@ -1,6 +1,6 @@
-﻿namespace ExpenseTracker.Application.UserLogin
-{
-    public class UserLoginResponse
+﻿namespace ExpenseTracker.Application.UserLogin;
+
+public class UserLoginResponse
     {
         /// <summary>
         ///     True if the login was successfull, false otherwise
@@ -17,4 +17,3 @@
         /// </summary>
         public DateTime? ExpireDate { get; set; }
     }
-}

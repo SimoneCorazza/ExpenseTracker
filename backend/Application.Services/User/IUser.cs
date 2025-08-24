@@ -1,8 +1,8 @@
 ﻿using ExpenseTracker.Application.Services.Auth;
 
-namespace ExpenseTracker.Application.Services.User
-{
-    /// <summary>
+namespace ExpenseTracker.Application.Services.User;
+
+/// <summary>
     ///     Provides the information of the logged user
     /// </summary>
     public interface IUser
@@ -12,4 +12,3 @@ namespace ExpenseTracker.Application.Services.User
         /// </summary>
         AuthenticatedUser? LoggedUser { get; }
     }
-}

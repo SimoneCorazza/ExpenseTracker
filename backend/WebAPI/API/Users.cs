@@ -1,5 +1,5 @@
-﻿using ExpenseTracker.Application.UserLogin;
-using ExpenseTracker.Application.UserRegistration;
+﻿using ExpenseTracker.Application.Users.Login;
+using ExpenseTracker.Application.Users.Registration;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 

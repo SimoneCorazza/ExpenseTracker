@@ -1,4 +1,4 @@
-﻿using ExpenseTracker.Application.EditCategories;
+﻿using ExpenseTracker.Application.Categories.Edit;
 using ExpenseTracker.Application.GetCategories;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;

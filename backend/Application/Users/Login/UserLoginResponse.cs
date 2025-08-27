@@ -1,4 +1,4 @@
-﻿namespace ExpenseTracker.Application.UserLogin;
+﻿namespace ExpenseTracker.Application.Users.Login;
 
 public class UserLoginResponse
     {

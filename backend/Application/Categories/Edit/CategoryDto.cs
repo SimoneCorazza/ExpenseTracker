@@ -1,4 +1,4 @@
-﻿namespace ExpenseTracker.Application.EditCategories;
+﻿namespace ExpenseTracker.Application.Categories.Edit;
 
 public class CategoryDto
 {

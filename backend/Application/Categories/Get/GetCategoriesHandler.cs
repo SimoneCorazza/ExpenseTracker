@@ -2,7 +2,7 @@
 using ExpenseTracker.Domain.Categories;
 using MediatR;
 
-namespace ExpenseTracker.Application.GetCategories;
+namespace ExpenseTracker.Application.Categories.Get;
 
 public class GetCategoriesHandler : IRequestHandler<GetCategories, GetCategoriesResponse>
 {

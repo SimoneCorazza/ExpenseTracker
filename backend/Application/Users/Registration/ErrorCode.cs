@@ -1,4 +1,4 @@
-﻿namespace ExpenseTracker.Application.UserRegistration;
+﻿namespace ExpenseTracker.Application.Users.Registration;
 
 /// <summary>
     ///     Error during the user registration

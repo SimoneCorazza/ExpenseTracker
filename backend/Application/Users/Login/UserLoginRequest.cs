@@ -1,6 +1,6 @@
 ﻿using MediatR;
 
-namespace ExpenseTracker.Application.UserLogin;
+namespace ExpenseTracker.Application.Users.Login;
 
 public class UserLoginRequest : IRequest<UserLoginResponse>
     {

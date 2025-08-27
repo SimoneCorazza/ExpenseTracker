@@ -1,4 +1,4 @@
-﻿namespace ExpenseTracker.Application.UserRegistration;
+﻿namespace ExpenseTracker.Application.Users.Registration;
 
 public class UserRegistrationResponse
     {

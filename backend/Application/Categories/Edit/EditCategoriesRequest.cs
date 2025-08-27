@@ -1,6 +1,6 @@
 ﻿using MediatR;
 
-namespace ExpenseTracker.Application.EditCategories;
+namespace ExpenseTracker.Application.Categories.Edit;
 
 /// <summary>
 ///     Replaces user categories with new ones.

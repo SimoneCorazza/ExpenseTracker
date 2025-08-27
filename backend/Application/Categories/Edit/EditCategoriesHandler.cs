@@ -2,7 +2,7 @@
 using ExpenseTracker.Domain.Categories;
 using MediatR;
 
-namespace ExpenseTracker.Application.EditCategories;
+namespace ExpenseTracker.Application.Categories.Edit;
 
 public class EditCategoriesHandler : IRequestHandler<EditCategoriesRequest>
 {

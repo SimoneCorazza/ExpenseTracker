@@ -5,7 +5,7 @@ using ExpenseTracker.Domain.Users;
 using ExpenseTracker.Domain.Users.Services.PasswordValidator;
 using MediatR;
 
-namespace ExpenseTracker.Application.UserRegistration;
+namespace ExpenseTracker.Application.Users.Registration;
 
 public class UserRegistrationHandler : IRequestHandler<RegisterRequest, UserRegistrationResponse>
     {

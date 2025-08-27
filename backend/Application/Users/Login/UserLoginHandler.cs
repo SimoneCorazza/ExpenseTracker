@@ -3,7 +3,7 @@ using ExpenseTracker.Application.Services.PasswordEncryptor;
 using ExpenseTracker.Domain.Users;
 using MediatR;
 
-namespace ExpenseTracker.Application.UserLogin;
+namespace ExpenseTracker.Application.Users.Login;
 
 public class UserLoginHandler : IRequestHandler<UserLoginRequest, UserLoginResponse>
     {

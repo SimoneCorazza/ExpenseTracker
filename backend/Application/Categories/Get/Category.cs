@@ -1,4 +1,4 @@
-﻿namespace ExpenseTracker.Application.GetCategories;
+﻿namespace ExpenseTracker.Application.Categories.Get;
 
 public class Category
 {

@@ -1,6 +1,6 @@
-﻿using ExpenseTracker.Application.Place.Get;
-using ExpenseTracker.Application.Places.Create;
+﻿using ExpenseTracker.Application.Places.Create;
 using ExpenseTracker.Application.Places.Delete;
+using ExpenseTracker.Application.Places.Get;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 

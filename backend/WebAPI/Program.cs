@@ -1,5 +1,3 @@
-using ExpenseTracker.Application.EditCategories;
-using ExpenseTracker.Application.GetCategories;
 using ExpenseTracker.Application.Services.EmailVerification;
 using ExpenseTracker.Application.Services.PasswordEncryptor;
 using ExpenseTracker.Application.Services.User;
@@ -7,8 +5,6 @@ using ExpenseTracker.Domain.Users.Services.PasswordValidator;
 using ExpenseTracker.Persistence;
 using ExpenseTracker.WebAPI.API;
 using ExpenseTracker.WebAPI.Configuration;
-using MediatR;
-using Microsoft.AspNetCore.Mvc;
 using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);

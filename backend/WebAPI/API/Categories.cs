@@ -1,5 +1,5 @@
 ﻿using ExpenseTracker.Application.Categories.Edit;
-using ExpenseTracker.Application.GetCategories;
+using ExpenseTracker.Application.Categories.Get;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 

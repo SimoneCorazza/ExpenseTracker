@@ -31,6 +31,6 @@ public class UpdatePlaceHandler : IRequestHandler<UpdatePlace>
         }
 
         place.Update(request.Name, request.Description);
-        await placeRepository.Save(place);
+        placeRepository.Update(place);
     }
 }

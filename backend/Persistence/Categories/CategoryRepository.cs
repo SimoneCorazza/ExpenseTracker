@@ -1,7 +1,6 @@
 ﻿using ExpenseTracker.Domain;
 using ExpenseTracker.Domain.Categories;
 using Microsoft.EntityFrameworkCore;
-using System.Collections.Generic;
 
 namespace ExpenseTracker.Persistence.Categories;
 

@@ -1,6 +1,3 @@
-using ExpenseTracker.Application.Get;
-using ExpenseTracker.Application.GetPlaces;
-using ExpenseTracker.Application.Place.Get;
 using ExpenseTracker.Application.Services.User;
 using ExpenseTracker.Domain.Places;
 using MediatR;

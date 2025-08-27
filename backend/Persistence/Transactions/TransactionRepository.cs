@@ -3,9 +3,9 @@
 namespace ExpenseTracker.Persistence.Transactions;
 
 public class TransactionRepository : BaseRepository<Transaction>, ITransactionRepository
+{
+    public TransactionRepository(DbContext dbContext)
+        : base(dbContext)
     {
-        public TransactionRepository(DbContext dbContext)
-            : base(dbContext)
-        {
-        }
     }
+}

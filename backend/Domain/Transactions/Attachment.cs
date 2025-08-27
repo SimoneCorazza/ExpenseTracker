@@ -1,80 +1,80 @@
 ﻿namespace ExpenseTracker.Domain.Transactions;
 
 public class Attachment
+{
+    /// <summary>
+    ///     Attachment id
+    /// </summary>
+    public Guid Id { get; private set; }
+
+    /// <summary>
+    ///     Name of the attachment
+    /// </summary>
+    public string Name { get; private set; }
+
+    /// <summary>
+    ///    Mime type of the attachment
+    /// </summary>
+    public string MimeType { get; private set; }
+
+    /// <summary>
+    ///     Size of the attachment in bytes
+    /// </summary>
+    public long Size { get; private set; }
+
+    /// <summary>
+    ///    Description of the attachment
+    /// </summary>
+    public string? Description { get; private set; }
+
+    /// <summary>
+    ///    Id of the object storage where the attachment is stored
+    /// </summary>
+    public string ObjectStorageId { get; private set; }
+
+    public Attachment(string name, string? description, string mimeType, long size, string objectStorageId)
     {
-        /// <summary>
-        ///     Attachment id
-        /// </summary>
-        public Guid Id { get; private set; }
+        Id = Guid.NewGuid();
+        Name = name;
+        Description = description;
+        MimeType = mimeType;
+        Size = size;
+        ObjectStorageId = objectStorageId;
 
-        /// <summary>
-        ///     Name of the attachment
-        /// </summary>
-        public string Name { get; private set; }
+        Validate();
+    }
 
-        /// <summary>
-        ///    Mime type of the attachment
-        /// </summary>
-        public string MimeType { get; private set; }
+    public void Update(string name, string? description, string mimeType, long size, string objectStorageId)
+    {
+        Name = name;
+        Description = description;
+        MimeType = mimeType;
+        Size = size;
+        ObjectStorageId = objectStorageId;
 
-        /// <summary>
-        ///     Size of the attachment in bytes
-        /// </summary>
-        public long Size { get; private set; }
+        Validate();
+    }
 
-        /// <summary>
-        ///    Description of the attachment
-        /// </summary>
-        public string? Description { get; private set; }
-
-        /// <summary>
-        ///    Id of the object storage where the attachment is stored
-        /// </summary>
-        public string ObjectStorageId { get; private set; }
-
-        public Attachment(string name, string? description, string mimeType, long size, string objectStorageId)
+    private void Validate()
+    {
+        if (string.IsNullOrWhiteSpace(Name))
         {
-            Id = Guid.NewGuid();
-            Name = name;
-            Description = description;
-            MimeType = mimeType;
-            Size = size;
-            ObjectStorageId = objectStorageId;
-
-            Validate();
+            throw new DomainException("The name is mandatory");
         }
 
-        public void Update(string name, string? description, string mimeType, long size, string objectStorageId)
+        if (string.IsNullOrWhiteSpace(ObjectStorageId))
         {
-            Name = name;
-            Description = description;
-            MimeType = mimeType;
-            Size = size;
-            ObjectStorageId = objectStorageId;
-
-            Validate();
+            throw new DomainException("The object storage id is mandatory");
         }
 
-        private void Validate()
+        if (string.IsNullOrWhiteSpace(MimeType))
         {
-            if (string.IsNullOrWhiteSpace(Name))
-            {
-                throw new DomainException("The name is mandatory");
-            }
+            throw new DomainException("The mime type is mandatory");
+        }
 
-            if (string.IsNullOrWhiteSpace(ObjectStorageId))
-            {
-                throw new DomainException("The object storage id is mandatory");
-            }
-
-            if (string.IsNullOrWhiteSpace(MimeType))
-            {
-                throw new DomainException("The mime type is mandatory");
-            }
-
-            if (Size <= 0)
-            {
-                throw new DomainException("The size must be greater than 0");
-            }
+        if (Size <= 0)
+        {
+            throw new DomainException("The size must be greater than 0");
         }
     }
+}

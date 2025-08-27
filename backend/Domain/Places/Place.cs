@@ -1,6 +1,4 @@
-﻿using ExpenseTracker.Domain;
-
-namespace ExpenseTracker.Domain.Places;
+﻿namespace ExpenseTracker.Domain.Places;
 
 /// <summary>
 ///     Place where the transaction took place

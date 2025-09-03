@@ -15,6 +15,7 @@ services:
       - "8080:8080"
     depends_on:
       - db
+      - objectstorage
     environment:
       - Persistence__ConnectionString=Host=db;Database=ExpenseTracker;Username=postgres;Password=postgres
   db:

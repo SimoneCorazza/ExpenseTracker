@@ -28,3 +28,14 @@ services:
       - /postgresql_data:/var/lib/postgresql/data
     ports:
       - "5432:5432"
+  objectstorage:
+    image: quay.io/minio/minio:latest
+    environment:
+      MINIO_ROOT_USER: ADMIN
+      MINIO_ROOT_PASSWORD: 5RgTi86oxB2y
+    volumes:
+      - /minio_data:/data
+    command: server /data --console-address ":9001"
+    ports:
+      - "9000:9000"
+      - "9001:9001"

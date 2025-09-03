@@ -54,3 +54,46 @@ Content-Type: application/json
 GET {{host}}/api/v1/categories
 Accept: application/json
 Authorization: Bearer {{token}}
+###
+
+P
+OST {{host}}/api/v1/transactions
+Accept: application/json
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+    "Amount": 25.50,
+    "Description": "Grocery shopping",
+    "Date": "2025-01-15",
+    "CategoryId": null,
+    "PlaceId": null,
+    "Attachments": []
+}
+
+###
+
+GET {{host}}/api/v1/transactions
+Accept: application/json
+Authorization: Bearer {{token}}
+
+###
+
+PUT {{host}}/api/v1/transactions/{{transactionId}}
+Accept: application/json
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+    "Amount": 30.75,
+    "Description": "Updated grocery shopping",
+    "Date": "2025-01-15",
+    "CategoryId": null,
+    "PlaceId": null,
+    "Attachments": []
+}
+
+###
+
+DELETE {{host}}/api/v1/transactions/{{transactionId}}
+Authorization: Bearer {{token}}

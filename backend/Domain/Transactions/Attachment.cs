@@ -27,30 +27,28 @@ public class Attachment
     /// </summary>
     public string? Description { get; private set; }
 
-    /// <summary>
-    ///    Id of the object storage where the attachment is stored
-    /// </summary>
-    public string ObjectStorageId { get; private set; }
-
-    public Attachment(string name, string? description, string mimeType, long size, string objectStorageId)
+    public Attachment(Guid objectId, string name, string? description, string mimeType, long size)
     {
-        Id = Guid.NewGuid();
+        Id = objectId;
         Name = name;
         Description = description;
         MimeType = mimeType;
         Size = size;
-        ObjectStorageId = objectStorageId;
 
         Validate();
     }
 
-    public void Update(string name, string? description, string mimeType, long size, string objectStorageId)
+    protected Attachment()
+    {
+        // Constructor for EF Core
+    }
+
+    public void Update(string name, string? description, string mimeType, long size)
     {
         Name = name;
         Description = description;
         MimeType = mimeType;
         Size = size;
-        ObjectStorageId = objectStorageId;
 
         Validate();
     }
@@ -60,11 +58,6 @@ public class Attachment
         if (string.IsNullOrWhiteSpace(Name))
         {
             throw new DomainException("The name is mandatory");
-        }
-
-        if (string.IsNullOrWhiteSpace(ObjectStorageId))
-        {
-            throw new DomainException("The object storage id is mandatory");
         }
 
         if (string.IsNullOrWhiteSpace(MimeType))

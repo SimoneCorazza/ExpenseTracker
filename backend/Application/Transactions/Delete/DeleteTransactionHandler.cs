@@ -35,5 +35,7 @@ public class DeleteTransactionHandler : IRequestHandler<DeleteTransactionRequest
         }
 
         await transactionRepository.Delete(transaction);
+
+        // TODO: Consider deleting attachments from storage as well
     }
 }

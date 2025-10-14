@@ -1,4 +1,6 @@
-﻿namespace ExpenseTracker.Domain.Transactions;
+﻿using ExpenseTracker.Domain.Transactions.Services.TransactionAttachment;
+
+namespace ExpenseTracker.Domain.Transactions;
 
 public class Transaction
 {
@@ -40,7 +42,7 @@ public class Transaction
     /// <summary>
     ///    Attachments of the transaction
     /// </summary>
-    public ICollection<Attachment> Attachments { get; private set; }
+    public List<Attachment> Attachments { get; private set; }
 
     public Transaction(
         Guid userId,
@@ -57,7 +59,7 @@ public class Transaction
         Date = date;
         CategoryId = categoryId;
         PlaceId = placeId;
-        Attachments = attachments;
+        Attachments = attachments.ToList();
 
         Id = Guid.NewGuid();
 
@@ -73,15 +75,25 @@ public class Transaction
         string? description,
         DateOnly date,
         Guid? categoryId,
-        Guid? placeId,
-        ICollection<Attachment> attachments)
+        Guid? placeId)
     {
         Amount = amount;
         Description = description;
         Date = date;
         CategoryId = categoryId;
         PlaceId = placeId;
-        Attachments = attachments;
+
+        Validate();
+    }
+
+    public void Update(ICollection<Attachment> attachments, int maxCount)
+    {
+        Attachments.AddRange(attachments);
+
+        if (Attachments.Count > maxCount)
+        {
+            throw new DomainException($"Cannot add more than {maxCount} attachments");
+        }
 
         Validate();
     }
@@ -98,11 +110,6 @@ public class Transaction
             if (Attachments.Any(x => x is null))
             {
                 throw new DomainException("The attachments cannot be null");
-            }
-
-            if (Attachments.GroupBy(x => x.ObjectStorageId).Any(g => g.Count() > 1))
-            {
-                throw new DomainException("The transaction cannot have duplicate attachments");
             }
         }
     }

@@ -2,10 +2,12 @@ using ExpenseTracker.Application.Services.EmailVerification;
 using ExpenseTracker.Application.Services.ObjectStorage;
 using ExpenseTracker.Application.Services.PasswordEncryptor;
 using ExpenseTracker.Application.Services.User;
+using ExpenseTracker.Domain.Transactions.Services.TransactionAttachment;
 using ExpenseTracker.Domain.Users.Services.PasswordValidator;
 using ExpenseTracker.Persistence;
 using ExpenseTracker.WebAPI.API;
 using ExpenseTracker.WebAPI.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 using Minio;
 using System.Reflection;
 
@@ -20,14 +22,14 @@ builder.Services.AddSingleton<IPasswordValidator>(sp => new PasswordValidator(
     builder.Configuration.GetValue<int>("Password:Validation:MinimumLength"),
     builder.Configuration.GetValue<string>("Password:Validation:SpecialCharactersList")));
 
-var objectStorageConfig = builder.Configuration.GetSection("ObjectStorage").Get<ObjectStorageConfig>();
-
 builder.ConfigAuth();
 builder.Services.AddCors();
 builder.Services.AddAuthorization();
 builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(Assembly.Load("ExpenseTracker.Application")));
 builder.Services.AddOpenApi();
 builder.Services.AddHttpContextAccessor(); // Added to get the ClaimsPrincipal outside of the controller
+
+var objectStorageConfig = builder.Configuration.GetSection("ObjectStorage").Get<ObjectStorageConfig>();
 builder.Services.AddMinio(x => x
     .WithEndpoint(objectStorageConfig.Endpoint)
     .WithCredentials(objectStorageConfig.AccessKey, objectStorageConfig.SecretKey)
@@ -36,6 +38,11 @@ builder.Services.AddMinio(x => x
 builder.Services.AddSingleton<IObjectStorage>(sp => new ObjectStorage(
     sp.GetRequiredService<IMinioClient>(),
     objectStorageConfig.BucketName));
+
+var transactionAttachmentConfig = builder.Configuration.GetRequiredSection("TransactionAttachment").Get<TransactionAttachmentConfig>();
+builder.Services.AddSingleton<ITransactionAttachmentService>(sp => new TransactionAttachmentService(
+    transactionAttachmentConfig.MaxCount,
+    transactionAttachmentConfig.MaxSize));
 
 builder.Services.AddScoped<IUser, User>();
 

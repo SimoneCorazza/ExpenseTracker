@@ -26,9 +26,4 @@ public class AttachmentDto
     ///     Size of the attachment in bytes
     /// </summary>
     public long Size { get; set; }
-
-    /// <summary>
-    ///     Object storage id where the attachment is stored
-    /// </summary>
-    public string ObjectStorageId { get; set; } = string.Empty;
 }

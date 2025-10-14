@@ -17,4 +17,9 @@
     <ProjectReference Include="..\Domain\Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Transactions\Attachments\Download\" />
+    <Folder Include="Transactions\Attachments\Delete\" />
+  </ItemGroup>
+
 </Project>

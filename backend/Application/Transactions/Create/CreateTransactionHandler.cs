@@ -22,14 +22,6 @@ public class CreateTransactionHandler : IRequestHandler<CreateTransactionRequest
             throw new UnauthorizedAccessException("User is not authenticated");
         }
 
-        var attachments = request.Attachments.Select(a => new Attachment(
-            a.Name,
-            a.Description,
-            a.MimeType,
-            a.Size,
-            a.ObjectStorageId
-        )).ToList();
-
         var transaction = new Transaction(
             user.LoggedUser.UserId,
             request.Amount,
@@ -37,7 +29,7 @@ public class CreateTransactionHandler : IRequestHandler<CreateTransactionRequest
             request.Date,
             request.CategoryId,
             request.PlaceId,
-            attachments
+            []
         );
 
         await transactionRepository.Save(transaction);

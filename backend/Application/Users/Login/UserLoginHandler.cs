@@ -2,6 +2,7 @@
 using ExpenseTracker.Application.Services.PasswordEncryptor;
 using ExpenseTracker.Domain.Users;
 using MediatR;
+using System.Security.Claims;
 
 namespace ExpenseTracker.Application.Users.Login;
 
@@ -45,6 +46,9 @@ public class UserLoginHandler : IRequestHandler<UserLoginRequest, UserLoginRespo
             user.Id,
             user.Email.Address,
             user.EmailVerifiedAt is not null));
+
+        var a = auth.FromClaims(new ClaimsPrincipal(
+            new ClaimsIdentity([new Claim(ClaimTypes.NameIdentifier, request.Email), new Claim(ClaimTypes.NameIdentifier, request.Email)])));
 
         // TODO: register last login date => make events? How to manage the transaction?
 

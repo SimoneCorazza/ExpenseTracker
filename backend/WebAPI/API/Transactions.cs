@@ -1,7 +1,9 @@
+using ExpenseTracker.Application.Transactions.Attachments.Add;
 using ExpenseTracker.Application.Transactions.Create;
 using ExpenseTracker.Application.Transactions.Delete;
 using ExpenseTracker.Application.Transactions.Edit;
 using ExpenseTracker.Application.Transactions.Get;
+using ExpenseTracker.Domain.Transactions.Services.TransactionAttachment;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -18,6 +20,32 @@ public static class Transactions
         app.MapPost("api/v1/transactions", async ([FromBody] CreateTransactionRequest request, IMediator mediator) => 
             await mediator.Send(request))
            .RequireAuthorization();
+
+        app.MapPost("api/v1/transactions/attachments/{id:guid}", async (
+            Guid id,
+            IFormFileCollection files,
+            ITransactionAttachmentService transactionAttachmentService,
+            IMediator mediator) =>
+        {   
+            await mediator.Send(new AddAttachmentsRequest
+            {
+                TransactionId = id,
+                Attachments = files.Select(x =>
+                {
+                    using var stream = x.OpenReadStream();
+                    using var ms = new MemoryStream();
+                    stream.CopyTo(ms);
+                    return new Application.Transactions.Attachments.AttachmentDto
+                    {
+                        Name = x.Name,
+                        MimeType = x.ContentType,
+                        Data = ms.ToArray(),
+                    };
+                }).ToList()
+            });
+
+            return Results.NoContent();
+        }).RequireAuthorization();
 
         app.MapPut("api/v1/transactions/{id:guid}", async (Guid id, [FromBody] EditTransactionRequest request, IMediator mediator) =>
         {

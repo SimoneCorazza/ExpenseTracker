@@ -33,9 +33,4 @@ public class EditTransactionRequest : IRequest
     ///     Place id
     /// </summary>
     public Guid? PlaceId { get; set; }
-
-    /// <summary>
-    ///     Attachments for the transaction
-    /// </summary>
-    public ICollection<AttachmentDto> Attachments { get; set; } = [];
 }

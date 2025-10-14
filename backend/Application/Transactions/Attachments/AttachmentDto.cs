@@ -1,5 +1,8 @@
-namespace ExpenseTracker.Application.Transactions.Create;
+namespace ExpenseTracker.Application.Transactions.Attachments;
 
+/// <summary>
+///     Data for the attachment
+/// </summary>
 public class AttachmentDto
 {
     /// <summary>
@@ -18,12 +21,7 @@ public class AttachmentDto
     public string MimeType { get; set; } = string.Empty;
 
     /// <summary>
-    ///     Size of the attachment in bytes
+    ///     Data of the attachment
     /// </summary>
-    public long Size { get; set; }
-
-    /// <summary>
-    ///     Object storage id where the attachment is stored
-    /// </summary>
-    public string ObjectStorageId { get; set; } = string.Empty;
+    public byte[] Data { get; set; } = [];
 }

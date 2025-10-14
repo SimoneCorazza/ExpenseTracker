@@ -41,7 +41,6 @@ public class GetTransactionsHandler : IRequestHandler<GetTransactionsRequest, Ge
                     Description = a.Description,
                     MimeType = a.MimeType,
                     Size = a.Size,
-                    ObjectStorageId = a.ObjectStorageId
                 }).ToList()
             }).ToList()
         };

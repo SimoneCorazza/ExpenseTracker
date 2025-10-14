@@ -34,21 +34,12 @@ public class EditTransactionHandler : IRequestHandler<EditTransactionRequest>
             throw new UnauthorizedAccessException("User is not authorized to edit this transaction");
         }
 
-        var attachments = request.Attachments.Select(a => new Attachment(
-            a.Name,
-            a.Description,
-            a.MimeType,
-            a.Size,
-            a.ObjectStorageId
-        )).ToList();
-
         transaction.Update(
             request.Amount,
             request.Description,
             request.Date,
             request.CategoryId,
-            request.PlaceId,
-            attachments
+            request.PlaceId
         );
 
         await transactionRepository.Save(transaction);

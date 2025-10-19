@@ -11,7 +11,7 @@ internal class PlaceMapping : IEntityTypeConfiguration<Place>
     {
         builder.ToTable("Places");
         builder.Property(x => x.Id)
-            .HasColumnName("PlaceId");
+            .HasColumnName("place_id");
 
         builder.HasKey(x => x.Id);
 
@@ -26,5 +26,10 @@ internal class PlaceMapping : IEntityTypeConfiguration<Place>
             .WithMany()
             .HasForeignKey(x => x.UserId)
             .OnDelete(DeleteBehavior.Cascade);
+
+        // A user cannot have two places with the same name
+        builder.HasIndex(x => new { x.UserId, x.Name })
+            .IsUnique()
+            .HasDatabaseName("places_unique_userid_name");
     }
 }

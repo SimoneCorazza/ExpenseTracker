@@ -12,7 +12,10 @@ public static class Initializer
 {
     public static void InitDatabase(this IServiceCollection services, string connectionString)
     {
-        services.AddDbContext<DbContext>(options => options.UseNpgsql(connectionString));
+        services.AddDbContext<DbContext>(options =>
+            options
+                .UseNpgsql(connectionString)
+                .UseSnakeCaseNamingConvention());
 
         var repositoryClasses = Assembly
             .GetExecutingAssembly()

@@ -9,7 +9,7 @@ internal class CategoryMapping : IEntityTypeConfiguration<CategoryPersistance>
     {
         builder.ToTable("Categories");
         builder.Property(x => x.Id)
-            .HasColumnName("CategoryId");
+            .HasColumnName("category_id");
         builder.HasKey(x => x.Id);
 
 
@@ -25,5 +25,10 @@ internal class CategoryMapping : IEntityTypeConfiguration<CategoryPersistance>
 
         builder.Property(x => x.ParentId)
             .IsRequired(false);
+
+        // A a user cannot have two categories with the same name under the same parent category.
+        builder.HasIndex(x => new { x.UserId, x.Name, x.ParentId })
+            .IsUnique()
+            .HasDatabaseName("categories_unique_userid_name_parentid");
     }
 }

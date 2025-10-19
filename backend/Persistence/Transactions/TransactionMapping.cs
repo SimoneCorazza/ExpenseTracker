@@ -13,7 +13,7 @@ internal class TransactionMapping : IEntityTypeConfiguration<Transaction>
     {
         builder.ToTable("Transactions");
         builder.Property(x => x.Id)
-            .HasColumnName("TransactionId");
+            .HasColumnName("transaction_id");
         builder.HasKey(x => x.Id);
 
         builder.HasOne<User>()
@@ -42,11 +42,11 @@ internal class TransactionMapping : IEntityTypeConfiguration<Transaction>
 
         builder.OwnsMany(x => x.Attachments, op =>
         {
-            op.WithOwner().HasForeignKey("TransactionId");
+            op.WithOwner().HasForeignKey("transaction_id");
 
             op.ToTable("Attachments");
             op.Property(x => x.Id)
-                .HasColumnName("AttachmentId");
+                .HasColumnName("attachment_id");
             op.HasKey(x => x.Id);
 
             op.Property(x => x.Name)

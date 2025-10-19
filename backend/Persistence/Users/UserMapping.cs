@@ -10,18 +10,19 @@ internal class UserMapping : IEntityTypeConfiguration<User>
     {
         builder.ToTable("Users");
         builder.Property(u => u.Id)
-            .HasColumnName("UserId");
+            .HasColumnName("user_id");
         builder.HasKey(u => u.Id);
 
         builder.OwnsOne(u => u.Email, op =>
         {
             op.Property(u => u.Address)
-                .HasColumnName("EmailAddress")
+                .HasColumnName("email_address")
                 .IsRequired()
                 .HasMaxLength(256);
 
             op.HasIndex(u => u.Address)
-            .IsUnique();
+                .IsUnique()
+                .HasDatabaseName("users_unique_email_address");
         });
 
         builder.Property(u => u.PasswordHash)
@@ -43,6 +44,7 @@ internal class UserMapping : IEntityTypeConfiguration<User>
             .IsRequired();
 
         builder.HasIndex(u => u.EmailVerificationBlob)
-            .IsUnique();
+            .IsUnique()
+            .HasDatabaseName("users_unique_email_verification_blob");
     }
 }

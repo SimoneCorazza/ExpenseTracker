@@ -1,13 +1,18 @@
-using MediatR;
 using System.ComponentModel.DataAnnotations;
 
-namespace ExpenseTracker.Application.Places.Create;
+namespace ExpenseTracker.Application.Places.Get;
 
 /// <summary>
-///     Object to create a new place
+///     Place
 /// </summary>
-public class CreatePlace : IRequest<CreatePlaceResponse>
+public class Place
 {
+    /// <summary>
+    ///     Id of the place
+    /// </summary>
+    [Required]
+    public Guid Id { get; set; }
+
     /// <summary>
     ///     Name of the place
     /// </summary>

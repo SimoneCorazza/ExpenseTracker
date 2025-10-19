@@ -1,8 +1,0 @@
-namespace ExpenseTracker.Application.Places.Get;
-
-public class PlaceDto
-{
-    public Guid Id { get; set; }
-    public string Name { get; set; } = string.Empty;
-    public string? Description { get; set; }
-}

@@ -26,7 +26,7 @@ public class GetPlacesHandler : IRequestHandler<GetPlaces, GetPlacesResponse>
         
         return new GetPlacesResponse
         {
-            Places = places.Select(p => new PlaceDto
+            Places = places.Select(p => new Place
             {
                 Id = p.Id,
                 Name = p.Name,

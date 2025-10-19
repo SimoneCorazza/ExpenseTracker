@@ -9,7 +9,12 @@ public static class Users
 {
     public static void MapUsers(this WebApplication app)
     {
-        app.MapPost("api/v1/user/register", async ([FromBody] RegisterRequest r, IMediator mediator) => await mediator.Send(r));
-        app.MapPost("api/v1/user/login", async ([FromBody] UserLoginRequest r, IMediator mediator) => await mediator.Send(r));
+        var user = app.MapGroup("api/v1/user")
+            .WithTags("user");
+
+        user.MapPost("/register", async ([FromBody] RegisterRequest r, IMediator mediator) => await mediator.Send(r))
+            .WithDescription("Register a new user");
+        user.MapPost("/login", async ([FromBody] UserLoginRequest r, IMediator mediator) => await mediator.Send(r))
+            .WithDescription("Log in");
     }
 }

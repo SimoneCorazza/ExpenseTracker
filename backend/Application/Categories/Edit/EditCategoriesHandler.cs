@@ -39,7 +39,7 @@ public class EditCategoriesHandler : IRequestHandler<EditCategoriesRequest>
         await categoryRepository.Save(userCategories);
     }
 
-    private static ICollection<Category> Categories(ICollection<CategoryDto> categories)
+    private static ICollection<Domain.Categories.Category> Categories(ICollection<Category> categories)
     {
         if (categories is null || categories.Count == 0)
         {
@@ -50,11 +50,11 @@ public class EditCategoriesHandler : IRequestHandler<EditCategoriesRequest>
         {
             if (x.Id is null)
             {
-                return new Category(Categories(x.Childrens), x.Name, x.Description);
+                return new Domain.Categories.Category(Categories(x.Childrens), x.Name, x.Description);
             }
             else
             {
-                return new Category((Guid)x.Id, Categories(x.Childrens), x.Name, x.Description);
+                return new Domain.Categories.Category((Guid)x.Id, Categories(x.Childrens), x.Name, x.Description);
             }
         })];
     }

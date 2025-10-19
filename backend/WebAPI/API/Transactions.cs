@@ -13,15 +13,19 @@ public static class Transactions
 {
     public static void MapTransactions(this WebApplication app)
     {
-        app.MapGet("api/v1/transactions", async (IMediator mediator) => 
+        var transactions = app.MapGroup("api/v1/transactions")
+            .RequireAuthorization()
+            .WithTags("transactions");
+
+        transactions.MapGet("/", async (IMediator mediator) => 
             await mediator.Send(new GetTransactionsRequest()))
-           .RequireAuthorization();
+           .WithDescription("Gets the transactions");
 
-        app.MapPost("api/v1/transactions", async ([FromBody] CreateTransactionRequest request, IMediator mediator) => 
+        transactions.MapPost("/", async ([FromBody] CreateTransactionRequest request, IMediator mediator) => 
             await mediator.Send(request))
-           .RequireAuthorization();
+           .WithDescription("Creates a new trnsaction");
 
-        app.MapPost("api/v1/transactions/attachments/{id:guid}", async (
+        transactions.MapPost("/attachments/{id:guid}", async (
             Guid id,
             IFormFileCollection files,
             ITransactionAttachmentService transactionAttachmentService,
@@ -45,21 +49,21 @@ public static class Transactions
             });
 
             return Results.NoContent();
-        }).RequireAuthorization();
+        }).WithDescription("Adds the given attachments to the transaction");
 
-        app.MapPut("api/v1/transactions/{id:guid}", async (Guid id, [FromBody] EditTransactionRequest request, IMediator mediator) =>
+        transactions.MapPut("/{id:guid}", async (Guid id, [FromBody] EditTransactionRequest request, IMediator mediator) =>
         {
             request.Id = id;
             await mediator.Send(request);
             return Results.NoContent();
         })
-        .RequireAuthorization();
+        .WithDescription("Edit an existing transaction");
 
-        app.MapDelete("api/v1/transactions/{id:guid}", async (Guid id, IMediator mediator) =>
+        transactions.MapDelete("/{id:guid}", async (Guid id, IMediator mediator) =>
         {
             await mediator.Send(new DeleteTransactionRequest { Id = id });
             return Results.NoContent();
         })
-        .RequireAuthorization();
+        .WithDescription("Deletes the given trnsaction");
     }
 }

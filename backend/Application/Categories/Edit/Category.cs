@@ -1,17 +1,13 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace ExpenseTracker.Application.Categories.Get;
+namespace ExpenseTracker.Application.Categories.Edit;
 
-/// <summary>
-///     Category
-/// </summary>
 public class Category
 {
     /// <summary>
-    ///     Id of this category
+    ///     Id of the edited category. Null if it's a new category
     /// </summary>
-    [Required]
-    public Guid Id { get; set; }
+    public Guid? Id { get; set; }
 
     /// <summary>
     ///     Name of the category

@@ -63,6 +63,7 @@ app.UseHttpsRedirection();
 app.MapUsers();
 app.MapCategories();
 app.MapTransactions();
+app.MapPlacess();
 
 
 app.Run();

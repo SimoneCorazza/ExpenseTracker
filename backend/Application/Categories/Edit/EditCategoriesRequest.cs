@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using System.ComponentModel.DataAnnotations;
 
 namespace ExpenseTracker.Application.Categories.Edit;
 
@@ -10,5 +11,6 @@ public class EditCategoriesRequest : IRequest
     /// <summary>
     ///     New root categories. These categories will replace the existing ones.
     /// </summary>
-    public ICollection<CategoryDto> RootCategories { get; set; }
+    [Required]
+    public ICollection<Category> RootCategories { get; set; }
 }

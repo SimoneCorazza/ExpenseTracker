@@ -47,9 +47,6 @@ public class UserLoginHandler : IRequestHandler<UserLoginRequest, UserLoginRespo
             user.Email.Address,
             user.EmailVerifiedAt is not null));
 
-        var a = auth.FromClaims(new ClaimsPrincipal(
-            new ClaimsIdentity([new Claim(ClaimTypes.NameIdentifier, request.Email), new Claim(ClaimTypes.NameIdentifier, request.Email)])));
-
         // TODO: register last login date => make events? How to manage the transaction?
 
         return new UserLoginResponse

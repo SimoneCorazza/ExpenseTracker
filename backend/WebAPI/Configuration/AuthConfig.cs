@@ -16,7 +16,6 @@ public static class AuthConfig
 
     public static void ConfigAuth(this WebApplicationBuilder builder)
     {
-            
         var jwtConfig = builder.Configuration.GetSection("JWT").Get<JwtConfiguration>() ?? throw new ArgumentNullException();
         var signingKey = Convert.FromBase64String(jwtConfig.SigningKey);
         var encryptionKey = Convert.FromBase64String(jwtConfig.EncryptionKey);

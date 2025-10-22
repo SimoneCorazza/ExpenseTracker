@@ -51,9 +51,8 @@ public static class Transactions
             return Results.NoContent();
         }).WithDescription("Adds the given attachments to the transaction");
 
-        transactions.MapPut("/{id:guid}", async (Guid id, [FromBody] EditTransactionRequest request, IMediator mediator) =>
+        transactions.MapPut("/", async ([FromBody] EditTransactionRequest request, IMediator mediator) =>
         {
-            request.Id = id;
             await mediator.Send(request);
             return Results.NoContent();
         })

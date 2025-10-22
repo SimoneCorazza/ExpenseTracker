@@ -1,12 +1,12 @@
 using MediatR;
 using System.ComponentModel.DataAnnotations;
 
-namespace ExpenseTracker.Application.Places.Update;
+namespace ExpenseTracker.Application.Places.Edit;
 
 /// <summary>
-///     Update the given place
+///     Edit the given place
 /// </summary>
-public class UpdatePlace : IRequest
+public class EditPlace : IRequest
 {
     /// <summary>
     ///     Id of the place to update

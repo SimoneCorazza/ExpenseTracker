@@ -1,5 +1,6 @@
 ﻿using ExpenseTracker.Application.Places.Create;
 using ExpenseTracker.Application.Places.Delete;
+using ExpenseTracker.Application.Places.Edit;
 using ExpenseTracker.Application.Places.Get;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
@@ -18,6 +19,11 @@ public static class Places
            .WithDescription("Gets the places for the logged in user");
         places.MapPost("/", async ([FromBody] CreatePlace r, IMediator mediator) => await mediator.Send(r))
            .WithDescription("Adds a new place for the logged in user");
+        places.MapPut("/", async ([FromBody] EditPlace r, IMediator mediator) =>
+        {
+            await mediator.Send(r);
+            return Results.NoContent();
+        }).WithDescription("Edit a place for the logged in user");
         places.MapDelete("/{id:guid}", async (Guid id, IMediator mediator) => await mediator.Send(new DeletePlace { Id = id }))
            .WithDescription("Deletes the given place for the logged in user");
     }

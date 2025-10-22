@@ -2,20 +2,20 @@ using ExpenseTracker.Application.Services.User;
 using ExpenseTracker.Domain.Places;
 using MediatR;
 
-namespace ExpenseTracker.Application.Places.Update;
+namespace ExpenseTracker.Application.Places.Edit;
 
-public class UpdatePlaceHandler : IRequestHandler<UpdatePlace>
+public class EditPlaceHandler : IRequestHandler<EditPlace>
 {
     private readonly IPlaceRepository placeRepository;
     private readonly IUser user;
 
-    public UpdatePlaceHandler(IPlaceRepository placeRepository, IUser user)
+    public EditPlaceHandler(IPlaceRepository placeRepository, IUser user)
     {
         this.placeRepository = placeRepository;
         this.user = user;
     }
 
-    public async Task Handle(UpdatePlace request, CancellationToken cancellationToken)
+    public async Task Handle(EditPlace request, CancellationToken cancellationToken)
     {
         if (user.LoggedUser is null)
         {

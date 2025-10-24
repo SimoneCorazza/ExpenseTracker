@@ -15,7 +15,10 @@ public static class Categories
 
         categories.MapGet("/", async (IMediator mediator) => await mediator.Send(new GetCategories()))
            .WithDescription("Gets the categories for the logged in user");
-        categories.MapPost("/", async ([FromBody] EditCategoriesRequest r, IMediator mediator) => await mediator.Send(r))
-           .WithDescription("Updates the categories for the logged in user");
+        categories.MapPost("/", async ([FromBody] EditCategoriesRequest r, IMediator mediator) =>
+        {
+            await mediator.Send(r);
+            return Results.NoContent();
+        }).WithDescription("Updates the categories for the logged in user");
     }
 }

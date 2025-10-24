@@ -17,6 +17,7 @@ public class CategoryRepository : ICategoryRepository
     {
         var categories = await dbContext.Categories
             .Where(c => c.UserId == userId)
+            .AsNoTracking()
             .ToArrayAsync();
 
         var rootCategories = categories.Where(c => c.ParentId is null)
@@ -41,11 +42,15 @@ public class CategoryRepository : ICategoryRepository
 
         var transaction = BeginTransaction();
 
-        var categoriesPresent = dbContext.Categories.Where(x => x.UserId == e.UserId && ids.Contains(x.Id)).ToHashSet();
+        var categoriesPresent = dbContext.Categories
+            .Where(x => x.UserId == e.UserId)
+            .Select(x => x.Id)
+            .ToHashSet();
 
+        // Udate or insert new categories
         foreach (var c in categories)
         {
-            if (categoriesPresent.Contains(c))
+            if (categoriesPresent.Contains(c.Id))
             {
                 dbContext.Categories.Update(c);
             }
@@ -53,6 +58,14 @@ public class CategoryRepository : ICategoryRepository
             {
                 dbContext.Categories.Add(c);
             }
+        }
+
+        // Delete removed categories
+        foreach (var id in categoriesPresent.Except(ids))
+        {
+            var categoryToDelete = new CategoryPersistance { Id = id };
+            dbContext.Categories.Attach(categoryToDelete);
+            dbContext.Categories.Remove(categoryToDelete);
         }
 
         dbContext.SaveChanges();

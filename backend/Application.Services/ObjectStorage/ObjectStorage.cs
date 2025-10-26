@@ -46,14 +46,27 @@ public class ObjectStorage : IObjectStorage
         return data;
     }
 
-    public async Task Upload(byte[] data, Guid? objectId)
+    public async Task Upload(byte[] data, Guid objectId, string contentType, Dictionary<string, string>? tags = null)
     {
         var par = new PutObjectArgs()
-            .WithContentType("application/pdf") // TODO: remove?
+            .WithContentType(contentType)
             .WithBucket(bucketName)
             .WithObject(objectId.ToString())
             .WithStreamData(new MemoryStream(data))
             .WithObjectSize(data.Length);
+
+        if (tags is not null)
+        {
+            var dic = new Dictionary<string, string>();
+            foreach (var tag in tags)
+            {
+                dic.Add(tag.Key, tag.Value);
+            }
+
+            var t = new Minio.DataModel.Tags.Tagging();
+            t.TaggingSet = new Minio.DataModel.Tags.TagSet(dic);
+            par = par.WithTagging(t);
+        }
 
         await minioClient.PutObjectAsync(par);
     }

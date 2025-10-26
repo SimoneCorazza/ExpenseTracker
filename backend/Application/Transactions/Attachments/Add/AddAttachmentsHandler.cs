@@ -3,6 +3,7 @@ using ExpenseTracker.Domain;
 using ExpenseTracker.Domain.Transactions;
 using ExpenseTracker.Domain.Transactions.Services.TransactionAttachment;
 using MediatR;
+using Minio.Exceptions;
 
 namespace ExpenseTracker.Application.Transactions.Attachments.Add;
 
@@ -26,14 +27,6 @@ public class AddAttachmentsHandler : IRequestHandler<AddAttachmentsRequest>
     {
         var transaction = await transactionRepository.GetById(request.TransactionId)
             ?? throw new DomainException("Transaction not found");
-        
-        Guid[] attachmentIds = new Guid[request.Attachments.Count];
-        Parallel.For(0, request.Attachments.Count, async i =>
-        {
-            var id = Guid.NewGuid();
-            attachmentIds[i] = id;
-            await objectStorage.Upload(request.Attachments[i].Data, id);
-        });
 
         if (request.Attachments.Any(x => x.Data.Length > transactionAttachmentService.MaxSizeInBytes))
         {
@@ -44,6 +37,20 @@ public class AddAttachmentsHandler : IRequestHandler<AddAttachmentsRequest>
             throw new DomainException("One or more attachments have an invalid file type");
         }
 
+        // TODO: add Polly
+        List<Guid> attachmentIds = new(request.Attachments.Count);
+        await Parallel.ForEachAsync(request.Attachments, async (x, _) =>
+        {
+            var id = Guid.NewGuid();
+            await objectStorage.Upload(
+                x.Data,
+                id,
+                x.MimeType,
+                // Tag to reverse search this attachment (eg to delete it later):
+                new Dictionary<string, string> { {"TransactionId", request.TransactionId.ToString()} });
+            attachmentIds.Add(id);
+        });
+
         var attachments = request.Attachments.Select((x, i) => new Attachment(
             attachmentIds[i],
             x.Name,
@@ -52,7 +59,29 @@ public class AddAttachmentsHandler : IRequestHandler<AddAttachmentsRequest>
             x.Data.Length))
             .ToList();
 
-            transaction.Update(attachments, transactionAttachmentService.MaxCount);
-        await transactionRepository.Save(transaction);
+        transaction.Update(attachments, transactionAttachmentService.MaxCount);
+
+        try
+        {
+            await transactionRepository.Save(transaction);
+        }
+        catch
+        {
+            // Rollback uploaded attachments in case of error
+            try
+            {
+                // TODO: add Polly
+                await Parallel.ForEachAsync(attachmentIds, async (id, _) =>
+                {
+                    await objectStorage.Delete(id);
+                });
+            }
+            catch
+            {
+                // Avoid masking the original exception
+            }
+
+            throw;
+        }
     }
 }

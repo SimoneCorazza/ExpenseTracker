@@ -3,7 +3,6 @@ using ExpenseTracker.Domain;
 using ExpenseTracker.Domain.Transactions;
 using ExpenseTracker.Domain.Transactions.Services.TransactionAttachment;
 using MediatR;
-using Minio.Exceptions;
 
 namespace ExpenseTracker.Application.Transactions.Attachments.Add;
 
@@ -32,10 +31,6 @@ public class AddAttachmentsHandler : IRequestHandler<AddAttachmentsRequest>
         {
             throw new DomainException("One or more attachments exceed the maximum allowed size");
         }
-        else if (request.Attachments.Any(x => !transactionAttachmentService.ValidateFromContent(x.Data)))
-        {
-            throw new DomainException("One or more attachments have an invalid file type");
-        }
 
         // TODO: add Polly
         List<Guid> attachmentIds = new(request.Attachments.Count);
@@ -47,7 +42,7 @@ public class AddAttachmentsHandler : IRequestHandler<AddAttachmentsRequest>
                 id,
                 x.MimeType,
                 // Tag to reverse search this attachment (eg to delete it later):
-                new Dictionary<string, string> { {"TransactionId", request.TransactionId.ToString()} });
+                new Dictionary<string, string> { {"transaction-id", request.TransactionId.ToString()} });
             attachmentIds.Add(id);
         });
 
@@ -67,6 +62,8 @@ public class AddAttachmentsHandler : IRequestHandler<AddAttachmentsRequest>
         }
         catch
         {
+            // TODO: publish event to retry deletion laiter?
+
             // Rollback uploaded attachments in case of error
             try
             {

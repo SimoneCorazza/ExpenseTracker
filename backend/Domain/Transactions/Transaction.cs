@@ -1,6 +1,4 @@
-﻿using ExpenseTracker.Domain.Transactions.Services.TransactionAttachment;
-
-namespace ExpenseTracker.Domain.Transactions;
+﻿namespace ExpenseTracker.Domain.Transactions;
 
 public class Transaction
 {

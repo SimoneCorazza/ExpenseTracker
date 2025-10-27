@@ -17,11 +17,11 @@ public static class Transactions
             .RequireAuthorization()
             .WithTags("transactions");
 
-        transactions.MapGet("/", async (IMediator mediator) => 
+        transactions.MapGet("/", async (IMediator mediator) =>
             await mediator.Send(new GetTransactionsRequest()))
            .WithDescription("Gets the transactions");
 
-        transactions.MapPost("/", async ([FromBody] CreateTransactionRequest request, IMediator mediator) => 
+        transactions.MapPost("/", async ([FromBody] CreateTransactionRequest request, IMediator mediator) =>
             await mediator.Send(request))
            .WithDescription("Creates a new trnsaction");
 
@@ -49,7 +49,9 @@ public static class Transactions
             });
 
             return Results.NoContent();
-        }).WithDescription("Adds the given attachments to the transaction");
+        })
+        .DisableAntiforgery()
+        .WithDescription("Adds the given attachments to the transaction");
 
         transactions.MapPut("/", async ([FromBody] EditTransactionRequest request, IMediator mediator) =>
         {

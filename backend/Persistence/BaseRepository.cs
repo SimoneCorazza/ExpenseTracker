@@ -24,8 +24,13 @@ public abstract class BaseRepository<T> : IRepository<T>
         return new EFCoreTransaction(dbContext.Database.BeginTransaction());
     }
 
-    public void Update(T e)
+    public virtual void Update(T e)
     {
+        if (e is null)
+        {
+            throw new ArgumentNullException(nameof(e));
+        }
+
         dbContext.Update(e);
         dbContext.SaveChanges();
     }
@@ -34,5 +39,25 @@ public abstract class BaseRepository<T> : IRepository<T>
     {
         dbContext.Remove(e);
         dbContext.SaveChanges();
+    }
+
+    /// <summary>
+    ///     Scan the collection to find <see cref="EntityState.Detached"/> entities
+    ///     and override their state to <see cref="EntityState.Added"/>.
+    ///     <br/>
+    ///     Useful when updating aggregate roots with new child entities that have a manual ID.
+    /// </summary>
+    /// <typeparam name="TCollection">Entity type</typeparam>
+    /// <param name="collection">Collection of entities to update the state</param>
+    protected void TreatDetachedAsAdded<TCollection>(ICollection<TCollection> collection)
+    {
+        foreach (var c in collection)
+        {
+            var e = dbContext.Entry(c);
+            if (e.State == EntityState.Detached)
+            {
+                e.State = EntityState.Added;
+            }
+        }
     }
 }

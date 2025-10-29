@@ -26,39 +26,10 @@ public class TransactionRepository : BaseRepository<Transaction>, ITransactionRe
             .FirstOrDefaultAsync(t => t.Id == id);
     }
 
-    public async Task Save(Transaction transaction)
+    public override void Update(Transaction e)
     {
-        var existingTransaction = await DbContext.Transactions
-            .Include(t => t.Attachments)
-            .FirstOrDefaultAsync(t => t.Id == transaction.Id);
+        TreatDetachedAsAdded(e.Attachments);
 
-        if (existingTransaction is null)
-        {
-            DbContext.Transactions.Add(transaction);
-        }
-        else
-        {
-            DbContext.Entry(existingTransaction).CurrentValues.SetValues(transaction);
-            
-            // Handle attachments
-            existingTransaction.Attachments.Clear();
-            foreach (var attachment in transaction.Attachments)
-            {
-                existingTransaction.Attachments.Add(attachment);
-            }
-        }
-
-        await DbContext.SaveChangesAsync();
-    }
-
-    public new async Task Delete(Transaction transaction)
-    {
-        DbContext.Transactions.Remove(transaction);
-        await DbContext.SaveChangesAsync();
-    }
-
-    public new ITransaction BeginTransaction()
-    {
-        return new EFCoreTransaction(DbContext.Database.BeginTransaction());
+        base.Update(e);
     }
 }

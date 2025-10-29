@@ -58,7 +58,7 @@ public class AddAttachmentsHandler : IRequestHandler<AddAttachmentsRequest>
 
         try
         {
-            await transactionRepository.Save(transaction);
+            transactionRepository.Update(transaction);
         }
         catch
         {

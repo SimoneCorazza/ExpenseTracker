@@ -17,18 +17,6 @@ public interface ITransactionRepository : IRepository<Transaction>
     Task<Transaction?> GetById(Guid id);
 
     /// <summary>
-    ///     Save the transaction
-    /// </summary>
-    /// <param name="transaction">Transaction to save</param>
-    Task Save(Transaction transaction);
-
-    /// <summary>
-    ///     Delete the transaction
-    /// </summary>
-    /// <param name="transaction">Transaction to delete</param>
-    Task Delete(Transaction transaction);
-
-    /// <summary>
     ///     Begin a transaction
     /// </summary>
     /// <returns>Transaction object</returns>

@@ -1,7 +1,7 @@
-﻿using ExpenseTracker.Domain.Categories;
-using ExpenseTracker.Domain.Places;
+﻿using ExpenseTracker.Domain.Places;
 using ExpenseTracker.Domain.Transactions;
 using ExpenseTracker.Domain.Users;
+using ExpenseTracker.Persistence.Categories;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
@@ -30,7 +30,7 @@ internal class TransactionMapping : IEntityTypeConfiguration<Transaction>
         builder.Property(x => x.Date)
             .IsRequired();
 
-        builder.HasOne<Category>()
+        builder.HasOne<CategoryPersistance>()
             .WithMany()
             .HasForeignKey(x => x.CategoryId)
             .OnDelete(DeleteBehavior.SetNull);

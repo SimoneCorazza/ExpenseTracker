@@ -1,5 +1,4 @@
-﻿using ExpenseTracker.Domain;
-using ExpenseTracker.Domain.Transactions;
+﻿using ExpenseTracker.Domain.Transactions;
 using Microsoft.EntityFrameworkCore;
 
 namespace ExpenseTracker.Persistence.Transactions;

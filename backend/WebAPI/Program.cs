@@ -7,7 +7,6 @@ using ExpenseTracker.Domain.Users.Services.PasswordValidator;
 using ExpenseTracker.Persistence;
 using ExpenseTracker.WebAPI.API;
 using ExpenseTracker.WebAPI.Configuration;
-using Microsoft.Extensions.DependencyInjection;
 using Minio;
 using System.Reflection;
 

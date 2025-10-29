@@ -2,7 +2,6 @@
 using ExpenseTracker.Application.Services.PasswordEncryptor;
 using ExpenseTracker.Domain.Users;
 using MediatR;
-using System.Security.Claims;
 
 namespace ExpenseTracker.Application.Users.Login;
 

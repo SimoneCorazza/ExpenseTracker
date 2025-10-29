@@ -1,6 +1,5 @@
 ﻿using ExpenseTracker.Application.Services.EmailVerification;
 using ExpenseTracker.Application.Services.PasswordEncryptor;
-using ExpenseTracker.Domain;
 using ExpenseTracker.Domain.Users;
 using ExpenseTracker.Domain.Users.Services.PasswordValidator;
 using MediatR;

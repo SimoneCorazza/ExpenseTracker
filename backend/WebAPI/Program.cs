@@ -66,3 +66,6 @@ app.MapPlacess();
 
 
 app.Run();
+
+// To make it accessible for the Functional Tests project
+public partial class Program;

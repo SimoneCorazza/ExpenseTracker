@@ -23,7 +23,7 @@ public class CreatePlaceHandler : IRequestHandler<CreatePlace, CreatePlaceRespon
         }
 
         var place = new Place(request.Name, request.Description, user.LoggedUser.UserId);
-        placeRepository.Add(place);
+        await placeRepository.Add(place);
 
         return new CreatePlaceResponse
         {

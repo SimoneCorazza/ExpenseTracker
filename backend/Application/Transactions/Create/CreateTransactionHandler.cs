@@ -32,7 +32,7 @@ public class CreateTransactionHandler : IRequestHandler<CreateTransactionRequest
             []
         );
 
-        transactionRepository.Add(transaction);
+        await transactionRepository.Add(transaction);
 
         return new CreateTransactionResponse
         {

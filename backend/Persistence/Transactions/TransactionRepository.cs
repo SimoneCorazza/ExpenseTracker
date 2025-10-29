@@ -26,10 +26,10 @@ public class TransactionRepository : BaseRepository<Transaction>, ITransactionRe
             .FirstOrDefaultAsync(t => t.Id == id);
     }
 
-    public override void Update(Transaction e)
+    public override async Task Update(Transaction e)
     {
         TreatDetachedAsAdded(e.Attachments);
 
-        base.Update(e);
+        await base.Update(e);
     }
 }

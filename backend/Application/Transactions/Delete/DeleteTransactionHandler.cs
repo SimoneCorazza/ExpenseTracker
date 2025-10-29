@@ -34,7 +34,7 @@ public class DeleteTransactionHandler : IRequestHandler<DeleteTransactionRequest
             throw new UnauthorizedAccessException("User is not authorized to delete this transaction");
         }
 
-        transactionRepository.Delete(transaction);
+        await transactionRepository.Delete(transaction);
 
         // TODO: Consider deleting attachments from storage as well
     }

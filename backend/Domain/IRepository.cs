@@ -10,19 +10,19 @@ public interface IRepository<T>
     ///     Add a new entity
     /// </summary>
     /// <param name="e">Entity</param>
-    void Add(T e);
+    Task Add(T e);
 
     /// <summary>
     ///     Update an existing entity
     /// </summary>
     /// <param name="e">Entity</param>
-    void Update(T e);
+    Task Update(T e);
 
     /// <summary>
     ///     Delete the entity
     /// </summary>
     /// <param name="e"></param>
-    void Delete(T e);
+    Task Delete(T e);
 
     /// <summary>
     ///     Begin a transaction

@@ -42,6 +42,6 @@ public class EditTransactionHandler : IRequestHandler<EditTransactionRequest>
             request.PlaceId
         );
 
-        transactionRepository.Update(transaction);
+        await transactionRepository.Update(transaction);
     }
 }

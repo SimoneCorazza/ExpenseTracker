@@ -30,6 +30,6 @@ public class DeletePlaceHandler : IRequestHandler<DeletePlace>
             throw new UnauthorizedAccessException("User is not authorized to delete this place");
         }
 
-        placeRepository.Delete(place);
+        await placeRepository.Delete(place);
     }
 }

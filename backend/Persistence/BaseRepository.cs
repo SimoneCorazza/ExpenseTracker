@@ -1,4 +1,5 @@
 ﻿using ExpenseTracker.Domain;
+using Microsoft.EntityFrameworkCore;
 
 namespace ExpenseTracker.Persistence;
 
@@ -13,10 +14,10 @@ public abstract class BaseRepository<T> : IRepository<T>
         this.dbContext = dbContext;
     }
 
-    public void Add(T e)
+    public virtual async Task Add(T e)
     {
-        dbContext.Add(e);
-        dbContext.SaveChanges();
+        dbContext.Add(e ?? throw new ArgumentNullException(nameof(e)));
+        await dbContext.SaveChangesAsync();
     }
 
     public ITransaction BeginTransaction()
@@ -24,21 +25,16 @@ public abstract class BaseRepository<T> : IRepository<T>
         return new EFCoreTransaction(dbContext.Database.BeginTransaction());
     }
 
-    public virtual void Update(T e)
+    public virtual async Task Update(T e)
     {
-        if (e is null)
-        {
-            throw new ArgumentNullException(nameof(e));
-        }
-
-        dbContext.Update(e);
-        dbContext.SaveChanges();
+        dbContext.Update(e ?? throw new ArgumentNullException(nameof(e)));
+        await dbContext.SaveChangesAsync();
     }
 
-    public void Delete(T e)
+    public virtual async Task Delete(T e)
     {
-        dbContext.Remove(e);
-        dbContext.SaveChanges();
+        dbContext.Remove(e ?? throw new ArgumentNullException(nameof(e)));
+        await dbContext.SaveChangesAsync();
     }
 
     /// <summary>

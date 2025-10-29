@@ -31,6 +31,6 @@ public class EditPlaceHandler : IRequestHandler<EditPlace>
         }
 
         place.Update(request.Name, request.Description);
-        placeRepository.Update(place);
+        await placeRepository.Update(place);
     }
 }

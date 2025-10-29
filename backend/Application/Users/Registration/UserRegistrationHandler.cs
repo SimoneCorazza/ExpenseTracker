@@ -58,7 +58,7 @@ public class UserRegistrationHandler : IRequestHandler<RegisterRequest, UserRegi
                 salt);
 
             // Does not need explicit transaction correct?
-            userRepository.Add(user);
+            await userRepository.Add(user);
 
             return new UserRegistrationResponse
             {
@@ -66,7 +66,7 @@ public class UserRegistrationHandler : IRequestHandler<RegisterRequest, UserRegi
                 ErrorCode = null,
             };
         }
-        catch (DomainException ex)
+        catch
         {
             return new UserRegistrationResponse
             {
